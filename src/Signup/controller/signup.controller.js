@@ -1,23 +1,63 @@
 const db = require('../../config/db.config');
 const Signup = db.signup;
- 
-// Post a Customer
-exports.create = (req, res) => {  
-  // Save to PostgreSQL database
-  Signup.create({
-        "email": req.body.email, 
-        "mobileNumber": req.body.mobileNumber, 
-        "password": req.body.password,
-        "confirmPassword" : req.body.confirmPassword,
-      }).then(signup => {    
-      // Send created signup to client
-      res.json(signup);
-    }).catch(err => {
-      console.log(err);
-      res.status(500).json({msg: "error", details: err});
-    });
+const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
+
+process.env.SECRET_KEY= 'asdasd64d6a4ds6asd'
+
+
+//post the user
+exports.create= (req, res) => {
+  const userData = {
+    "email": req.body.email, 
+    "mobileNumber": req.body.mobileNumber, 
+    "password": req.body.password,
+    "confirmPassword" : req.body.password,
+  }
+  Signup.findOne({
+    where: {
+      email:req.body.email
+    }
+  })
+  .then(user =>{
+    if(!user){
+      const hash = bcrypt.hashSync(userData.password, 10)
+      userData.password = hash
+      Signup.create(userData)
+            .then(user => {
+              let token = jwt.sign(user.dataValues, process.env.SECRET_KEY,{expiresIn:1440})
+              res.json({ token: token })
+            })
+            .catch(err => {
+              res.send('error:' + err);
+            })
+    }else{
+      res.json({ error: 'User Already Exists'})
+    }
+  });
 };
 
+
+// module.exports.findAll = (req, res) =>{
+//   var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY);
+//   console.log(decoded)
+
+//   Signup.findOne({
+//     where : {
+//       id: decoded.id
+//     }
+//   })
+//   .then(user =>{
+//     if(user) {
+//       res.json(user)
+//     }else{
+//       res.send('User does nor exists')
+//     }
+//   })
+//   .catch(err  =>{
+//     res.send('error:' + err)
+//   });
+// };
 
 //fetching all user 
   exports.findAll = (req, res) => {
