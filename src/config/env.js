@@ -4,6 +4,7 @@ const env = {
     password: 'praveen6470',
     host: 'localhost',
     dialect: 'postgres',
+    SECRET_KEY: 'asdasd64d6a4ds6asd',
     pool: {
         max: 5,
         min: 0,
