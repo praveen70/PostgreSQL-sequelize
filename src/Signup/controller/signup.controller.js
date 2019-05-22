@@ -12,7 +12,7 @@ exports.create= (req, res) => {
     "email": req.body.email, 
     "mobileNumber": req.body.mobileNumber, 
     "password": req.body.password,
-    "confirmPassword" : req.body.password,
+   
   }
   Signup.findOne({
     where: {
