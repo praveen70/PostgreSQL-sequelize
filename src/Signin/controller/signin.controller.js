@@ -12,14 +12,11 @@ exports.signin = (req, res) => {
         email: req.body.email
       }
     }).then(user => {
-      console.log("user password",user.password)
-      console.log("req.body.password", req.body.password)
-        //console.log(user)
       if (!user) {
         return res.status(404).send('User Not Found.');
       }
-      
-      
+
+      //comparing  stored password and user typed password with bcrypt lib 
       var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
      
       if (!passwordIsValid) {
