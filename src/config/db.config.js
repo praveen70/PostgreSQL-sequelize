@@ -27,5 +27,6 @@ db.sequelize = sequelize;
 
 //Models/tables
 db.signup = require('../Signup/model/signup.model')(sequelize, Sequelize);
+db.signin = require('../Signin/model/signin.model')(sequelize, Sequelize);
 
 module.exports = db;

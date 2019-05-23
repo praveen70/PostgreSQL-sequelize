@@ -1,4 +1,3 @@
-var md5 = require('md5');
 
 module.exports = (sequelize, Sequelize) => {
     const Signup = sequelize.define('signup', {
@@ -14,6 +13,9 @@ module.exports = (sequelize, Sequelize) => {
                 isEmail: true
               }
             },
+            username: {
+                type: Sequelize.STRING,
+            },
             mobileNumber  : {
             type: Sequelize.STRING
             },
@@ -22,16 +24,10 @@ module.exports = (sequelize, Sequelize) => {
                 len: { 
                     args: [7, 42],
                     msg: "The password length should be between 7 and 42 characters."
-                 },
-                 set (pass, key) {
-                    // `key` is "password" here
-                    this.setDataValue(key, md5(pass));
                  }
+                 
 
             },
-            confirmPassword: {
-                type: Sequelize.STRING
-            }
     },
     {
         timestamps:false    
