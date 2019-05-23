@@ -1,8 +1,6 @@
-const db = require('../../config/db.config');
-const Signup = db.signup;
-const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
-const env = require('../../config/env');
+const db = require('../../../config/db.config');
+const Mobile = db.mobile;
+
 
 
 
@@ -10,43 +8,28 @@ const env = require('../../config/env');
 
 //post the user
 exports.create= (req, res) => {
-  const userData = {
-    "email": req.body.email, 
-    "username": req.body.username,
-    "mobileNumber": req.body.mobileNumber, 
-    "password": req.body.password,
+    Mobile.create({
+    "mobilesName": req.body.mobilesName, 
+    "price": req.body.price,
+    "camera": req.body.camera, 
+    "battery": req.body.battery,
+    "description": req.body.description,
     
-  }
-  Signup.findOne({
-    where: {
-      email:req.body.email
-    }
   })
-  .then(user =>{
-    if(!user){
-      const hash = bcrypt.hashSync(userData.password, 10)
-      userData.password = hash
-      Signup.create(userData)
-            .then(user => {
-              let token = jwt.sign(user.dataValues, env.SECRET_KEY,{expiresIn:1440})
-              res.json({ token: token })
-            })
-            .catch(err => {
-              res.send('error:' + err);
-            })
-    }else{
-      res.json({ error: 'User Already Exists'})
-    }
-  });
+  .then(mobiles => {		
+    // Send created employee to client
+    res.send(mobiles);
+});
+ 
 };
 
 
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-	Signup.findAll().then(signup => {
+  Mobile.findAll().then(mobiles => {
 		//Send all CompanyMaster to Client
-		res.json(signup);
+		res.json(mobiles);
 	}).catch(err => {
         console.log(err);
         res.status(500).json({msg: "error", details: err});
@@ -54,8 +37,8 @@ exports.create= (req, res) => {
 };
 
 exports.findById = (req, res) => {  
-    Signup.findByPk(req.params.id).then(signup => {
-        res.json(signup);
+    Mobile.findByPk(req.params.id).then(mobiles => {
+        res.json(mobiles);
       }).catch(err => {
         console.log(err);
         res.status(500).json({msg: "error", details: err});
@@ -65,8 +48,8 @@ exports.findById = (req, res) => {
   // Update a User
 exports.update = (req, res) => {
     const id = req.params.id;
-    Signup.update( req.body, 
-        { where: {uuid: id } }).then(() => {
+    Mobile.update( req.body, 
+        { where: { uuid: id } }).then(() => {
           res.status(200).json( { mgs: "Updated Successfully -> User Id = " + id } );
         }).catch(err => {
           console.log(err);
@@ -77,7 +60,7 @@ exports.update = (req, res) => {
   // Delete a User by Id
 exports.delete = (req, res) => {
     const id = req.params.id;
-    Signup.destroy({
+    Mobile.destroy({
         where: { uuid: id }
       }).then(() => {
         res.status(200).json( { msg: 'Deleted Successfully -> Customer Id = ' + id } );

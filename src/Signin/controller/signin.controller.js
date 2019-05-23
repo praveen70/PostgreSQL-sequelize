@@ -6,18 +6,19 @@ const env = require('../../config/env');
 
 
 //signin function
-exports.signin = (req, res) => {    
+exports.signin = (req, res) => {   
     Signin.findOne({
       where: {
-        username: req.body.username
+        email: req.body.email
       }
     }).then(user => {
-        console.log(user)
       if (!user) {
         return res.status(404).send('User Not Found.');
       }
-   
-      var passwordIsValid = bcrypt.compare(req.body.password, user.password);
+
+      //comparing  stored password and user typed password with bcrypt lib 
+      var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+     
       if (!passwordIsValid) {
         return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!" });
       }
