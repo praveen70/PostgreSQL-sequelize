@@ -22,6 +22,10 @@ db.sequelize.sync({force: false}).then(() => {
 
 require('./src/Signup/route/signup.route')(app);
 require('./src/Signin/route/signin.route')(app);
+require('./src/Brands/Mobile/route/mobile.route')(app);
+require('./src/Brands/Mobile/vivo/route/vivo.route')(app);
+
+require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
 
  
 // Create a Server

@@ -11,12 +11,7 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
         acquire: env.pool.acquire,
         idle: env.pool.idle
       }
-    // dialect: 'mssql',
-    // host: '192.168.2.247',
-    // port: '1433',
-    // dialectOptions: {
-    //     encrypt: true
-    // }
+    
 });
 
 const db = {};
@@ -28,5 +23,8 @@ db.sequelize = sequelize;
 //Models/tables
 db.signup = require('../Signup/model/signup.model')(sequelize, Sequelize);
 db.signin = require('../Signin/model/signin.model')(sequelize, Sequelize);
+db.mobile = require('../Brands/Mobile/model/mobile.model')(sequelize, Sequelize);
+db.mobileVivo = require('../Brands/Mobile/vivo/model/vivo.model')(sequelize, Sequelize);
 
+db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
 module.exports = db;

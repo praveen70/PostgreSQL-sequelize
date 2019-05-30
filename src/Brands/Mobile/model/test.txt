@@ -1,0 +1,51 @@
+<div class="wp-block-image">
+<figure class="alignleft" >As we complete three years and begin our fourth, I can’t help but feel proud of the immense success we have achieved with our product – over 150+ million users on our platform have translated into 50+ million daily app sessions, totaling an incredible 500,000 hours on PhonePe each day! The outcome is 10 million daily transactions and 2 Billion data events that help us continuously sharpen the product experience and performance.</figure>
+</div>
+<p>All this has been possible only because of the balanced approach we have taken to product development –</p>
+<ul>
+<li ><span >Prioritizing building platform capabilities over growth hacking</span></li>
+<li ><span >Placing system scaling ahead of feature development</span></li>
+<li ><span >Paying off Tech-debt as a continuous process</span></li>
+</ul>
+<p><span >Some of this might sound counter-intuitive for a startup in its early years, but when you look at the scale we have achieved - the outlook is not only justified but is probably the only reason we have been able to rise to these heights.</span></p>
+<p><span >Our approach to engineering has led us to possess perhaps the richest repository of platform capabilities a three year old startup can have. Some examples of these platforms are:</span></p>
+<ul>
+<li ><span >Our core payments orchestrator is designed using a flexible </span><a href="https://github.com/flipkart-incubator/databuilderframework"><b>Databuilder Framework</b></a><span > to support all types of money flows and any digital currency. </span></li>
+<li ><span >Risk detection and offer decisioning are both powered by a generic entity store built in-house. This supports high velocity real-time aggregation across the billion events we generate daily.</span></li>
+<li ><span >Our market first platform that hosts other partner experiences inside the PhonePe app is built on a use-case agnostic fulfillment engine. This provisions us with a flexible pre-checkout, checkout and post-checkout architecture, supporting work flows for a variety of transactional businesses.</span></li>
+</ul>
+<p><span >Even the PhonePe mobile app on Android and iOS is architected as a full-fledged ecosystem by itself with clear abstractions. This ensures that core capabilities on the mobile app are common across categories and partner experiences hosted by it.</span></p>
+<p><span >The underlying theme across these systems is that they have all been designed for hypergrowth, helping us scale the product well beyond our plans (an immense luxury and blessing for a rocketship startup). This has been possible because of the early decision to anchor our system architecture on </span><a href="https://akfpartners.com/growth-blog/scale-cube/)"><span >the Scale Cube model</span></a><span >, made famous by the book, </span><a href="http://theartofscalability.com/"><span >The Art of Scalability</span></a><span >. </span></p>
+<p>&nbsp;</p>
+<p><img class=" wp-image-686 aligncenter" src="https://tech.phonepe.com/wp-content/uploads/2019/05/Blog-Thumbnail-Tech-2-300x300.png" alt="" width="495" height="495" /></p>
+<p><span >Almost all companies today have bought into the X-Axis of horizontal scalability of their code, especially with public cloud bringing in the tools to easily manage deployment at scale. Many have also adopted the Y-Axis and either started with, or quickly moved onto a micro-services architecture on the back-end. But most of the companies have not taken the Z-Axis into account, which ultimately becomes the lynchpin for scalability and performance. The Z-Axis brings the balance of data partitioning and data growth to horizontal scaling of microservices. We have anchored this from Day one, and I believe that is the reason we have seen a lot of success as well as early learning into managing data at scale.  </span></p>
+<p><span >What has also helped us along the way is the fact that the team has come up with a core set of design principles that we always try to adhere to. Anchoring these design choices for core platforms as early as possible has led to consistency in our design and development of critical sub-systems. Here are some of the design principles we follow: </span></p>
+<ul>
+<li ><span >Zero local data storage on services </span><span ><br /></span><span >Decoupling data locality from the service container ensures that data stores and services can scale independently. It also increases the flexibility to migrate/replace underlying data stores with minimal impact to services.</span></li>
+<li ><span >All services to design for asynchronous data flows, unless a partner integration forces a sync design</span></li>
+<li ><span >Strict shared-nothing architecture for storage and queues</span>
+<ul>
+<li ><span >Direct DB access only from the owner service</span></li>
+<li ><span >Direct queue access only from the owner service</span></li>
+<li ><span >Actors for API callbacks to the requisite clients</span></li>
+</ul>
+</li>
+<li ><span >All DBs must be sharded from Day1 for horizontal scalability at the data layer</span>
+<ul>
+<li ><span >Common sharding library for all MySQL databases</span></li>
+<li ><span >No scatter-gather queries in the user path</span></li>
+</ul>
+</li>
+<li ><span > No caching of data across services</span>
+<ul>
+<li ><span >No service will cache data owned by another service</span></li>
+<li ><span >Caching to be done only by service that owns the data</span></li>
+</ul>
+</li>
+</ul>
+<p><span >Finally, everything we do starts as an engineering problem of designing for scale for millions of users. Thanks to our awesome engineering team and the amazing work they have been doing - it is with great pride that I announce the launch of the new PhonePe Engineering Blog. Along with solid experience of having built some of the most scalable distributed systems in the industry, the team utilizes the raw talent of the smartest entering the software engineering workforce, bringing a lot of energy to the floor. This helps us move fast while ensuring we are not piling up too much tech debt.</span></p>
+<p><span >We hope to share in greater depth, how we have approached solving some of the problems we have chosen to take on, and take a deep dive into the design thinking behind building those systems.</span></p>
+<p><span >Stay tuned for more insights into how Engineering@PhonePe continues to power tens of millions of transactions across India everyday!</span></p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p><!-- /wp:paragraph --></p>
