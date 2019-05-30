@@ -27,4 +27,5 @@ db.mobileOppo = require('../Brands/Mobile/Oppo/model/mobile.model')(sequelize, S
 db.mobileVivo = require('../Brands/Mobile/vivo/model/vivo.model')(sequelize, Sequelize);
 db.mobileMi = require('../Brands/Mobile/Mi/model/mi.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
+db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequelize, Sequelize);
 module.exports = db;
