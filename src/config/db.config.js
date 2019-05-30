@@ -23,8 +23,8 @@ db.sequelize = sequelize;
 //Models/tables
 db.signup = require('../Signup/model/signup.model')(sequelize, Sequelize);
 db.signin = require('../Signin/model/signin.model')(sequelize, Sequelize);
-db.mobile = require('../Brands/Mobile/model/mobile.model')(sequelize, Sequelize);
+db.mobileOppo = require('../Brands/Mobile/Oppo/model/mobile.model')(sequelize, Sequelize);
 db.mobileVivo = require('../Brands/Mobile/vivo/model/vivo.model')(sequelize, Sequelize);
-
+db.mobileMi = require('../Brands/Mobile/Mi/model/mi.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
 module.exports = db;

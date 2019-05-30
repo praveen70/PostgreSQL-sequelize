@@ -1,9 +1,9 @@
 const db = require('../../../../config/db.config');
-const MobileVivo = db.mobileVivo;
+const MobileMi = db.mobileMi;
 
 //post the user
 exports.create= (req, res) => {
-    MobileVivo.create({
+    MobileMi.create({
     "mobilesName": req.body.mobilesName, 
     "price": req.body.price,
     "camera": req.body.camera, 
@@ -22,7 +22,7 @@ exports.create= (req, res) => {
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-  MobileVivo.findAll().then(mobiles => {
+  MobileMi.findAll().then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {
@@ -32,7 +32,7 @@ exports.create= (req, res) => {
 };
 
 exports.findById = (req, res) => {  
-    MobileVivo.findByPk(req.params.id).then(mobiles => {
+    MobileMi.findByPk(req.params.id).then(mobiles => {
         res.json(mobiles);
       }).catch(err => {
         console.log(err);
@@ -43,7 +43,7 @@ exports.findById = (req, res) => {
   // Update a User
 exports.update = (req, res) => {
     const id = req.params.id;
-    MobileVivo.update( req.body, 
+    MobileMi.update( req.body, 
         { where: { uuid: id } }).then(() => {
           res.status(200).json( { mgs: "Updated Successfully -> User Id = " + id } );
         }).catch(err => {
@@ -55,7 +55,7 @@ exports.update = (req, res) => {
   // Delete a User by Id
 exports.delete = (req, res) => {
     const id = req.params.id;
-    MobileVivo.destroy({
+    MobileMi.destroy({
         where: { uuid: id }
       }).then(() => {
         res.status(200).json( { msg: 'Deleted Successfully -> Customer Id = ' + id } );

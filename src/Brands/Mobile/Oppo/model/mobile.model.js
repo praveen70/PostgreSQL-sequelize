@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Electronic = sequelize.define('electronics', {
+    const mobileOppo = sequelize.define('electronics', {
         uuid: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV1,
@@ -55,5 +55,5 @@ module.exports = (sequelize, Sequelize) => {
         timestamps:false    
     });
     
-    return Electronic;
+    return mobileOppo;
   }

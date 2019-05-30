@@ -6,11 +6,11 @@ module.exports = function(app) {
 
      app.get('/api/mobileNames', MobileVivo.findAll);
 
-    // app.get('/api/mobileNames/:id', mobile.findById);
+    app.get('/api/mobileNames/:id', MobileVivo.findById);
 
-    // app.put('/api/mobileNames/:id', mobile.update);
+    app.put('/api/mobileNames/:id', MobileVivo.update);
 
-    // app.delete('/api/mobileNames/:id', mobile.delete);
+    app.delete('/api/mobileNames/:id', MobileVivo.delete);
 
 
 }

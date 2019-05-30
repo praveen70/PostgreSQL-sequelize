@@ -1,5 +1,5 @@
-const db = require('../../../config/db.config');
-const Mobile = db.mobile;
+const db = require('../../../../config/db.config');
+const Mobile = db.mobileOppo;
 
 //post the user
 exports.create= (req, res) => {
