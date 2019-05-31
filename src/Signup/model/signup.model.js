@@ -5,6 +5,7 @@ module.exports = (sequelize, Sequelize) => {
                 type: Sequelize.UUID,
                 defaultValue: Sequelize.UUIDV1,
                 primaryKey: true,
+                allowNull: false
             
             },
             email: {
@@ -21,10 +22,8 @@ module.exports = (sequelize, Sequelize) => {
             },
             password: {
                 type: Sequelize.STRING,
-                len: { 
-                    args: [7, 42],
-                    msg: "The password length should be between 7 and 42 characters."
-                 }
+                allowNull:false
+            
                  
 
             },

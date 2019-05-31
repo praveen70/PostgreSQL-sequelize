@@ -28,4 +28,16 @@ db.mobileVivo = require('../Brands/Mobile/vivo/model/vivo.model')(sequelize, Seq
 db.mobileMi = require('../Brands/Mobile/Mi/model/mi.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
 db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequelize, Sequelize);
+
+
+//Relations
+//  db.mobileOppo.belongsToMany(db.mobileVivo, {as : 'mobileVivo', through: 'puppiesFoods'});  
+// db.mobileOppo.belongsTo(db.mobileMi);  
+// db.mobileOppo.belongsTo(db.mobileAccessories);  
+// db.mobileOppo.belongsTo(db.hpDesktop);  
+// db.mobileVivo.hasMany(db.mobileOppo);  
+//  db.hpDesktop.belongsTo(db.mobileVivo);  
+// db.signup.hasMany(db.hpDesktop);
+ 
+
 module.exports = db;

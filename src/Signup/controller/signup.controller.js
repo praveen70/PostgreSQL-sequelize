@@ -10,6 +10,26 @@ const env = require('../../config/env');
 
 //post the user
 exports.create= (req, res) => {
+  if(!req.body.email){
+    res.status(500).json({msg: "Email cannot be blank", });
+    return;
+  }
+  if(!req.body.username){
+    res.status(500).json({msg: "Username cannot be blank", });
+    return;
+  }
+  if(!req.body.mobileNumber){
+    res.status(500).json({msg: "MobileNumber cannot be balnk"});
+    return;
+  }
+  if(!req.body.password ){
+    res.status(500).json({msg: "password cannot be blank"});
+    return false;
+  }
+  else if(req.body.password <= 4){
+    res.status(500).json({msg: "password cannot be less than 4 characters"});
+      return false;
+  }
   const userData = {
     "email": req.body.email, 
     "username": req.body.username,
