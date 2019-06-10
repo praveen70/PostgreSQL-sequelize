@@ -41,9 +41,7 @@ exports.create= (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  Mobile.findAll({
-    include:[{ association: 'mobileVivo' }],
-  }).then(mobiles => {
+  Mobile.findAll({ includes: [ mobileVivo ] }).then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {

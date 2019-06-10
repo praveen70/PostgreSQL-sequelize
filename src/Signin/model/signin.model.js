@@ -1,6 +1,3 @@
-
-
-
 module.exports = (sequelize, Sequelize) => {
     const Signin = sequelize.define('signin', {
             

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const mobileMi = sequelize.define('mobiles', {
+    const mobileMi = sequelize.define('mobilesMi', {
         uuid: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV1,

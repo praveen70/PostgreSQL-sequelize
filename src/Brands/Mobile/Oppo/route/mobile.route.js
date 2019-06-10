@@ -2,15 +2,15 @@ module.exports = function(app) {
 
     const mobile = require('../controller/mobile.controller');
 
-    app.post('/api/mobile', mobile.create);
+    app.post('/api/mobileOppo', mobile.create);
 
-    app.get('/api/mobile', mobile.findAll);
+    app.get('/api/mobileOppo', mobile.findAll);
 
-    app.get('/api/mobile/:id', mobile.findById);
+    app.get('/api/mobileOppo/:id', mobile.findById);
 
-    app.put('/api/mobile/:id', mobile.update);
+    app.put('/api/mobileOppo/:id', mobile.update);
 
-    app.delete('/api/mobile/:id', mobile.delete);
+    app.delete('/api/mobileOppo/:id', mobile.delete);
 
 
 }
