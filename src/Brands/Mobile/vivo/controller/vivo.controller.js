@@ -19,10 +19,11 @@ exports.create= (req, res) => {
  
 };
 //fetching all user 
-  exports.findAll = (req, res) => {
+  exports.findAll = async (req, res) => {
   // console.log("req.body", req);
-  MobileVivo.findAll({
-    inculdes: [ {  include: [MobileOppo]  }]
+  await MobileVivo.findAll({
+    include: [{model: MobileOppo}]
+   
   }).then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
