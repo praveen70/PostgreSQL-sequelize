@@ -33,7 +33,7 @@ db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 //Relations
 //db.mobileOppo.belongsTo(db.mobileVivo);
 db.mobileOppo.belongsTo(db.mobileVivo, { constraints: true , onDelte: "CASCADE"})
-db.mobileVivo.hasMany(db.mobileOppo)
+db.mobileVivo.hasMany(db.mobileOppo , {constraints: false})
 // db.mobileOppo.hasOne(db.mobileVivo)
 // db.mobileVivo.hasMany(db.mobileOppo)
 

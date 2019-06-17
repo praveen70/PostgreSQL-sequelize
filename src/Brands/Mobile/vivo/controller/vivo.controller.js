@@ -1,5 +1,6 @@
 const db = require('../../../../config/db.config');
 const MobileVivo = db.mobileVivo;
+const MobileOppo = db.mobileOppo;
 
 //post the user
 exports.create= (req, res) => {
@@ -17,12 +18,12 @@ exports.create= (req, res) => {
 });
  
 };
-
-
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-  MobileVivo.findAll().then(mobiles => {
+  MobileVivo.findAll({
+    inculdes: [ {  include: [MobileOppo]  }]
+  }).then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {
@@ -30,6 +31,18 @@ exports.create= (req, res) => {
         res.status(500).json({msg: "error", details: err});
       });
 };
+
+// //fetching all user 
+//   exports.findAll = (req, res) => {
+//   // console.log("req.body", req);
+//   MobileVivo.findAll().then(mobiles => {
+// 		//Send all CompanyMaster to Client
+// 		res.json(mobiles);
+// 	}).catch(err => {
+//         console.log(err);
+//         res.status(500).json({msg: "error", details: err});
+//       });
+// };
 
 exports.findById = (req, res) => {  
     MobileVivo.findByPk(req.params.id).then(mobiles => {
