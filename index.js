@@ -25,6 +25,7 @@ require('./src/Brands/Mobile/Mi/route/mi.route')(app);
 
 require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
 require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
+require('./app/route/file.router')(app);
 
  
 // Create a Server

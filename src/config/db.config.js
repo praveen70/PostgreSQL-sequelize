@@ -29,7 +29,7 @@ db.mobileMi = require('../Brands/Mobile/Mi/model/mi.model')(sequelize, Sequelize
 db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
 db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequelize, Sequelize);
 
-//db.files = require('../../app/model/file.model')(sequelize, Sequelize);
+db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 //Relations
 //db.mobileOppo.belongsTo(db.mobileVivo);
 db.mobileOppo.belongsTo(db.mobileVivo, { constraints: true , onDelte: "CASCADE"})
