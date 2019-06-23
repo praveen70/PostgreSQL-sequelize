@@ -1,0 +1,23 @@
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    background: red;
+    margin-top: 20px;
+    /* overflow: hidden; */
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+
+/* .img {
+    position: absolute;
+    height: 280px;
+    min-width: 1680px;
+    width: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    box-shadow: 0 0 black;
+} */
