@@ -15,7 +15,10 @@ import {  Image, Icon } from 'semantic-ui-react'
 import Submenu from '../Submenu';
 import Slider from '../Imageslider'
 import Carddata from '../Carddata';
-
+import Newmobile from '../Mobilenewlaunches';
+import Appleitem from '../Appleitems';
+import Offer from '../Offersonly'
+import Toprefurbished from '../Toprefurbished';
 //import Badge from '@material-ui/core/Badge';
 //import MenuIcon from '@material-ui/icons/Menu';
 //import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -218,11 +221,22 @@ export default function Navbar() {
     <div>
         <Submenu />
     </div>
-    <div>
+    <div className='col-md-12'>
       <Slider />
     </div>
-    <div className='col-md-12' >
-      <Carddata />
+    <div >
+    <Carddata />
+    </div>
+    <div>
+    <div> 
+        <Offer />
+      </div>
+    </div>
+    <div >
+      <Newmobile />
+    </div>
+    <div>
+      <Toprefurbished />
     </div>
     </div>
   );
