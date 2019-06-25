@@ -4,6 +4,7 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV1,
             primaryKey: true,
+            default: sequelize.fn('uuid_generate_v4')
         
         },
         mobilesName : {

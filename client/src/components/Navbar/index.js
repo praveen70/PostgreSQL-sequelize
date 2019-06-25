@@ -19,6 +19,9 @@ import Newmobile from '../Mobilenewlaunches';
 import Appleitem from '../Appleitems';
 import Offer from '../Offersonly'
 import Toprefurbished from '../Toprefurbished';
+import Privacycontent from '../Privacycontent';
+import Footer from '../Footer';
+import BacktoTop from '../BacktoTop';
 //import Badge from '@material-ui/core/Badge';
 //import MenuIcon from '@material-ui/icons/Menu';
 //import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -221,7 +224,7 @@ export default function Navbar() {
     <div>
         <Submenu />
     </div>
-    <div className='col-md-12'>
+    <div style={{ height: '100%'}}>
       <Slider />
     </div>
     <div >
@@ -237,6 +240,15 @@ export default function Navbar() {
     </div>
     <div>
       <Toprefurbished />
+    </div>
+    <div>
+      <Privacycontent />
+    </div>
+    <div>
+      <Footer/>
+    </div>
+    <div>
+      <BacktoTop />
     </div>
     </div>
   );

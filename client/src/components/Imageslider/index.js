@@ -1,6 +1,6 @@
 import  './imageslider.css'
 import React from 'react';
-import { Fade } from 'react-slideshow-image';
+import { Slide } from 'react-slideshow-image';
 import { Carousel } from 'antd';
 
 const fadeImages = [
@@ -13,10 +13,11 @@ const fadeImages = [
 const fadeProperties = {
   duration: 5000,
   transitionDuration: 500,
-  infinite: false,
+  infinite: true,
   indicators: true,
+  arrows: true,
   onChange: (oldIndex, newIndex) => {
-    console.log(`fade transition from ${oldIndex} to ${newIndex}`);
+    console.log(`slide transition from ${oldIndex} to ${newIndex}`);
   }
 }
  
@@ -39,7 +40,7 @@ const Slider = () => {
   // </Carousel>
   // </div>
   
-    <Fade {...fadeProperties}>
+    <Slide {...fadeProperties}>
       <div className="each-fade" style={{marginTop: 20}}>
         <div className="image-container" >
           <img src={fadeImages[0]} style={{ width: '100%'}}  />
@@ -60,7 +61,7 @@ const Slider = () => {
           <img src={fadeImages[3]} style={{ width: '100%'}} />
         </div>
       </div>
-    </Fade>
+    </Slide>
   )
 }
 

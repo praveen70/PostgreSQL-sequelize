@@ -2,16 +2,16 @@ const env = require('./env.js');
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(env.database, env.username, env.password, {
-    host: env.host,
-    dialect: env.dialect,
-    operatorsAliases: false,
-    pool: {
-        max: env.max,
-        min: env.pool.min,
-        acquire: env.pool.acquire,
-        idle: env.pool.idle
-      }
-    
+  host: env.host,
+  dialect: env.dialect,
+  operatorsAliases: false,
+  pool: {
+    max: env.max,
+    min: env.pool.min,
+    acquire: env.pool.acquire,
+    idle: env.pool.idle
+  }
+
 });
 
 const db = {};
@@ -32,10 +32,17 @@ db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequeliz
 db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 //Relations
 //db.mobileOppo.belongsTo(db.mobileVivo);
-db.mobileOppo.belongsTo(db.mobileVivo, { constraints: true , onDelte: "CASCADE"})
-db.mobileVivo.hasMany(db.mobileOppo , {constraints: false})
-// db.mobileOppo.hasOne(db.mobileVivo)
-// db.mobileVivo.hasMany(db.mobileOppo)
+db.mobileOppo.belongsTo(db.mobileVivo, {
+  constraints: true,
+  foreignKey: db.mobileVivo.uuid,
+  sourceKey: db.mobileVivo.uuid,
+})
+db.mobileVivo.hasMany(db.mobileOppo, {
+  constraints: true,
+  foreignKey: db.mobileOppo.uuid,
+  sourceKey: db.mobileOppo.uuid,
+})
+
 
 
 module.exports = db;
