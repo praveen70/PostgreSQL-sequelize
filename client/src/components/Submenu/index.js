@@ -10,7 +10,7 @@ export default class Submenu extends Component {
     const { activeItem } = this.state
 
     return (
-        <div style={{justifyContent: "flex-end", margin: '0 auto'}}>
+        <div style={{justifyContent: "flex-end", }}>
       <Menu stackable>
           <div>
         <Dropdown text='Electronics' pointing className='link item'>

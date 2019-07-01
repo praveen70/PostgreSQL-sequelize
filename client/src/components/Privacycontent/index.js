@@ -4,7 +4,7 @@ import { Card,  Button, Radio } from 'antd';
 // import  './carddata.css'
 const Privacycontent = () => (
     <div style={{ background: '#ECECEC', padding: '25px'}}>
-    <Card  bordered={false} style={{ width: 1400 }} >
+    <Card  bordered={false}  >
         <div style={{display: 'flex', marginTop: '10px' }}>
             <div class="ui special cards">
             <div class="_2G8BHl">

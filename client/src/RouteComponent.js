@@ -3,8 +3,8 @@ import Loadable from 'react-loadable';
 import Spinner from './components/Spinner';
 
 const Login = Loadable({
-      loader: () => import('./components/Login'),
-      loader: () => import('./components/Landingpage'),
+      loader: () => import('../src/components/Login/index'),
+      loader: () => import('../src/components/Landingpage/index'),
       loading() {
         return <Spinner />
       }

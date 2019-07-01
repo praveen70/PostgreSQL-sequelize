@@ -22,6 +22,7 @@ import Toprefurbished from '../Toprefurbished';
 import Privacycontent from '../Privacycontent';
 import Footer from '../Footer';
 import BacktoTop from '../BacktoTop';
+import { Navbar, Form, Button, FormControl,  Nav } from 'react-bootstrap';
 //import Badge from '@material-ui/core/Badge';
 //import MenuIcon from '@material-ui/icons/Menu';
 //import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -93,135 +94,119 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Navbar() {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+export default function Navbars() {
+  // const classes = useStyles();
+  // const [anchorEl, setAnchorEl] = React.useState(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget);
-  }
+  // const isMenuOpen = Boolean(anchorEl);
+  // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorEl(null);
-  }
+  // function handleProfileMenuOpen(event) {
+  //   setAnchorEl(event.currentTarget);
+  // }
 
-  function handleMenuClose() {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  }
+  // function handleMobileMenuClose() {
+  //   setMobileMoreAnchorEl(null);
+  // }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget);
-  }
+  // function handleMenuClose() {
+  //   setAnchorEl(null);
+  //   handleMobileMenuClose();
+  // }
 
-  const menuId = 'primary-search-account-menu';
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Login & Signup</MenuItem>
-      <MenuItem onClick={handleMenuClose}>More</MenuItem>
-    </Menu>
-  );
+  // function handleMobileMenuOpen(event) {
+  //   setMobileMoreAnchorEl(event.currentTarget);
+  // }
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-       <a href="/more"> <p>More</p></a> 
-      </MenuItem>
-      <MenuItem>
-        <p>Login & Signup</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="Account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          {/* <AccountCircle /> */}
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
-    </Menu>
-  );
+  // const menuId = 'primary-search-account-menu';
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Login & Signup</MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>More</MenuItem>
+  //   </Menu>
+  // );
+
+  // const mobileMenuId = 'primary-search-account-menu-mobile';
+  // const renderMobileMenu = (
+  //   <Menu
+  //     anchorEl={mobileMoreAnchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={mobileMenuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMobileMenuOpen}
+  //     onClose={handleMobileMenuClose}
+  //   >
+  //     <MenuItem>
+  //      <a href="/more"> <p>More</p></a> 
+  //     </MenuItem>
+  //     <MenuItem>
+  //       <p>Login & Signup</p>
+  //     </MenuItem>
+  //     <MenuItem onClick={handleProfileMenuOpen}>
+  //       <IconButton
+  //         aria-label="Account of current user"
+  //         aria-controls="primary-search-account-menu"
+  //         aria-haspopup="true"
+  //         color="inherit"
+  //       >
+  //         {/* <AccountCircle /> */}
+  //       </IconButton>
+  //       <p>Cart</p>
+  //     </MenuItem>
+  //   </Menu>
+  // );
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-          {/* <Image wrapped size='medium' src={require('../../image/logo.png')} style={{height: "0 auto" , width: 80}} /> */}
-          <Icon loading name='asterisk' style={{ color: 'white'}} />Buyanything
-          </Typography>
-          <div className={classes.search} style={{float : 'right'}}>
-            <div className={classes.searchIcon} >
-              <SearchIcon  />
-            </div>
-            <InputBase
-              placeholder="Search for products brands "
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'Search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="Show 4 new mails" color="inherit">
-            <div style={{display:'flex' ,marginRight:10, fontSize:15, }}>
-            <div style={{marginLeft:15}}>
-            <Loginmodal />
-            {/* <strong ><NavLink to='/Login' style={{color: 'white'}}>Login & Signup</NavLink> </strong> */}
-            </div>
-            <div style={{marginLeft:15}}>
-                 <a><strong style={{color:'white'}}>More</strong></a>
-            </div>
-            <div style={{marginLeft:15}}>
-                 <a><strong><i class="material-icons" style={{color:'white'}}>Cart</i></strong></a>
-            </div>
-
-            </div>
-              
-             
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="Show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
     <div>
+      <>
+  <Navbar  className="bg-primary justify-content-between  d-block d-md-flex" variant="dark">
+    <div className="d-block d-md-flex">
+      <Navbar.Brand href="#home"><Icon loading name='asterisk' style={{ color: 'white'}} />Buyanything</Navbar.Brand>
+      <Form inline>
+        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+        <Button variant="outline-light">Search</Button>
+      </Form>
+    </div>
+    <div>
+    <Nav className="mr-auto">
+      <Nav.Link href="#pricing">
+        <div style={{marginLeft:15 , color: 'white'}}>
+            <Loginmodal />
+        </div>
+      </Nav.Link>
+
+      <Nav.Link href="#home">
+      <div style={{marginLeft:15}}>
+                 <a><strong style={{color:'white'}}>More</strong></a>
+        </div>
+      </Nav.Link>
+      <Nav.Link href="#features">
+      <div style={{marginLeft:15}}>
+          <a><strong><i className="material-icons" style={{color:'white'}}>Cart</i></strong></a>
+      </div>
+      </Nav.Link>
+     
+    </Nav>
+
+    </div>
+
+   
+  </Navbar>
+  
+            
+</>
+<div>
         <Submenu />
     </div>
     <div style={{ height: '100%'}}>
@@ -251,5 +236,98 @@ export default function Navbar() {
       <BacktoTop />
     </div>
     </div>
+   
   );
 }
+
+
+
+//  <div className={classes.grow}>
+//       <AppBar position="static">
+//         <Toolbar>
+//           <Typography className={classes.title} variant="h6" noWrap>
+//           {/* <Image wrapped size='medium' src={require('../../image/logo.png')} style={{height: "0 auto" , width: 80}} /> */}
+//           <Icon loading name='asterisk' style={{ color: 'white'}} />Buyanything
+//           </Typography>
+//           <div className={classes.search} style={{float : 'right'}}>
+//             <div className={classes.searchIcon} >
+//               <SearchIcon  />
+//             </div>
+//             <InputBase
+//               placeholder="Search for products brands "
+//               classes={{
+//                 root: classes.inputRoot,
+//                 input: classes.inputInput,
+//               }}
+//               inputProps={{ 'aria-label': 'Search' }}
+//             />
+//           </div>
+//           <div className={classes.grow} />
+//           <div className={classes.sectionDesktop}>
+//             <IconButton aria-label="Show 4 new mails" color="inherit">
+//             <div style={{display:'flex' ,marginRight:10, fontSize:15, }}>
+//             <div style={{marginLeft:15}}>
+//             <Loginmodal />
+//             {/* <strong ><NavLink to='/Login' style={{color: 'white'}}>Login & Signup</NavLink> </strong> */}
+//             </div>
+//             <div style={{marginLeft:15}}>
+//                  <a><strong style={{color:'white'}}>More</strong></a>
+//             </div>
+//             <div style={{marginLeft:15}}>
+//                  <a><strong><i className="material-icons" style={{color:'white'}}>Cart</i></strong></a>
+//             </div>
+
+//             </div>
+              
+             
+//             </IconButton>
+//           </div>
+//           <div className={classes.sectionMobile}>
+//             <IconButton
+//               aria-label="Show more"
+//               aria-controls={mobileMenuId}
+//               aria-haspopup="true"
+//               onClick={handleMobileMenuOpen}
+//               color="inherit"
+//             >
+//               <MoreIcon />
+//             </IconButton>
+//           </div>
+//         </Toolbar>
+//       </AppBar>
+//       {renderMobileMenu}
+//       {renderMenu}
+//     <div>
+//         <Submenu />
+//     </div>
+//     <div style={{ height: '100%'}}>
+//       <Slider />
+//     </div>
+//     <div >
+//     <Carddata />
+//     </div>
+//     <div>
+//     <div> 
+//         <Offer />
+//       </div>
+//     </div>
+//     <div >
+//       <Newmobile />
+//     </div>
+//     <div>
+//       <Toprefurbished />
+//     </div>
+//     <div>
+//       <Privacycontent />
+//     </div>
+//     <div>
+//       <Footer/>
+//     </div>
+//     <div>
+//       <BacktoTop />
+//     </div>
+//     </div>
+
+
+
+

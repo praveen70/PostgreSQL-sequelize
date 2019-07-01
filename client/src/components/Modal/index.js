@@ -22,7 +22,12 @@ class Loginmodal extends React.Component {
   }
   render(){
     return (
-  <Modal trigger={<strong>Login & Signup</strong>} centered={false} style={{width:700}}>
+  <Modal trigger={<strong>Login & Signup</strong>} centered={false} style={{    width: 'auto',
+    height: 'auto',
+    padding: '0 30px 30px',
+    left: '50%',
+    top: '38%',
+    transform: 'translate(-50%, -50%)'}}>
 
     <Modal.Header>Login</Modal.Header>
     <Modal.Content image>
