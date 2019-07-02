@@ -1,16 +1,24 @@
 import React from 'react'
 import { Button, Image, Modal } from 'semantic-ui-react'
-import {  Checkbox, Form } from 'semantic-ui-react'
+import {  Checkbox, Form } from 'semantic-ui-react';
+import { withRouter } from "react-router-dom";
+import axios from 'axios';
+
 import  './modal.css';
 
 class Loginmodal extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      username : '',
+      email : '',
       password : '',
-
+      open: false,
     }
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ open: true })
+    }, 10000);
   }
   inputChange = (event) => {
     const { name, value } =  event.target
@@ -18,11 +26,29 @@ class Loginmodal extends React.Component {
     this.setState({ [name] : value})
   }
   handleSubmit = () => {
+    let  { email, password } =  this.state;
+    let data = {
+      email: email,
+      password: password,
+    }
+    axios.post('http://localhost:8081/api/signin/' , data)
+    .then(function (response) {
+      console.log(response);
+      // this.props.history.push('/')
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
     console.log(this.state);
+  }
+
+
+  closeModel = () => {
+    this.setState({ open : false })
   }
   render(){
     return (
-  <Modal trigger={<strong>Login & Signup</strong>} centered={false} style={{    width: 'auto',
+  <Modal open={this.state.open} onClose={this.closeModel} trigger={<strong>Login & Signup</strong>} centered={false} style={{    width: 'auto',
     height: 'auto',
     padding: '0 30px 30px',
     left: '50%',
@@ -36,7 +62,7 @@ class Loginmodal extends React.Component {
         <Form>
             <Form.Field>
             <label>User Name</label>
-            <input type="text" name="username" value={this.state.username} 
+            <input type="email" name="email" value={this.state.email} 
             onChange={(event) => this.inputChange(event)}
             placeholder='User Name' />
             </Form.Field>
@@ -60,7 +86,7 @@ class Loginmodal extends React.Component {
 }
 
 
-export default Loginmodal
+export default withRouter(Loginmodal)
 
 
 

@@ -23,22 +23,7 @@ const fadeProperties = {
  
 const Slider = () => {
   return (
-  // <div style={{marginTop: 10}}>
-  //     <Carousel autoplay>
-  //   <div>
-  //     <img src='https://rukminim1.flixcart.com/flap/3376/560/image/676ca540c0fe7dd6.jpg?q=50' />
-  //   </div>
-  //   <div>
-  //     <h3>2</h3>
-  //   </div>
-  //   <div>
-  //     <h3>3</h3>
-  //   </div>
-  //   <div>
-  //     <h3>4</h3>
-  //   </div>
-  // </Carousel>
-  // </div>
+ 
   
     <Slide {...fadeProperties}>
       <div className="each-fade" style={{marginTop: 20}}>

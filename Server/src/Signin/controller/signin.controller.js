@@ -12,6 +12,7 @@ exports.signin = (req, res) => {
         email: req.body.email
       }
     }).then(user => {
+      console.log(user.email)
       if (!user) {
         return res.status(404).send('User Not Found.');
       }
