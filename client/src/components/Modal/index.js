@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, Image, Modal } from 'semantic-ui-react'
 import {  Checkbox, Form } from 'semantic-ui-react';
-import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
 import  './modal.css';
@@ -86,7 +85,7 @@ class Loginmodal extends React.Component {
 }
 
 
-export default withRouter(Loginmodal)
+export default Loginmodal;
 
 
 
