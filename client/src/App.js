@@ -1,16 +1,10 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
-import Landingpage from './RouteComponent'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Landingpage from './RouteComponent';
 import './App.css';
 
 function App() {
-  return ( 
-    <Landingpage / >
-  );
+	return <Landingpage />;
 }
 
 export default App;

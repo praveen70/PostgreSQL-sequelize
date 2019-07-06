@@ -1,0 +1,29 @@
+/* 
+$breakpoint-tablet: 460px;
+$breakpoint-tablet-max:600px; */
+
+
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+  .submenu {
+    width: 100%;
+    display: block;
+    text-align: center;
+
+  }
+
+
+
+}
+
+
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+  .ant-card-body {
+    width: 100%;
+    display: block;
+    text-align: center;
+
+  }
+
+
+
+}

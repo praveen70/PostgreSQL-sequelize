@@ -13,3 +13,14 @@
   AppBar{
     background-color: #407;
   }
+  @media only screen and (min-width: 300px) and(max-width:500px) {
+    [class*="bg-primary "],
+    [class*="submenu"],
+    .bg-primary {
+      display: flex;
+    }
+    .block {
+      text-align: center;
+    }
+  }
+ 

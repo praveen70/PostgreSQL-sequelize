@@ -1,15 +1,6 @@
 import React from 'react';
 // import { NavLink } from "react-router-dom";
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import MenuItem from '@material-ui/core/MenuItem';
-import SearchIcon from '@material-ui/icons/Search';
-import Menu from '@material-ui/core/Menu';
+
 import Loginmodal from '../Modal'
 import {  Image, Icon } from 'semantic-ui-react'
 import { Navbar, Form, Button, FormControl,  Nav } from 'react-bootstrap';
@@ -25,7 +16,8 @@ export default function Navbars() {
     
   <Navbar  className="bg-primary justify-content-between  d-block d-md-flex" variant="dark">
     <div className="d-block d-md-flex">
-      <Navbar.Brand href="#home"><Icon loading name='asterisk' style={{ color: 'white'}} />Buyanything</Navbar.Brand>
+      <Navbar.Brand className="buy" href="#home"><Icon loading name='asterisk' style={{ color: 'white'}} />Buyanything</Navbar.Brand>
+     
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-light">Search</Button>
