@@ -15,19 +15,19 @@ const db = require("./src/config/db.config");
 db.sequelize.sync({force: false}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
+}).catch(function(err) {
+  console.log(err)
 });
 
 require('./src/Signup/route/signup.route')(app);
 require('./src/Signin/route/signin.route')(app);
+require('./src/Brands/Mobile/Mi/route/mi.route')(app);
 require('./src/Brands/Mobile/Oppo/route/mobile.route')(app);
 require('./src/Brands/Mobile/vivo/route/vivo.route')(app);
-require('./src/Brands/Mobile/Mi/route/mi.route')(app);
-
 require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
 require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
 require('./app/route/file.router')(app);
 
- 
 // Create a Server
 var server = app.listen(8081, function () {
  

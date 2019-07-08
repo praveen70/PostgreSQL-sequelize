@@ -31,6 +31,10 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps:false    
     });
+
+    mobileMi.associate = function(models) {
+        mobileMi.hasMany(models.mobileOppo);
+    };
     
     return mobileMi;
-  }
+  };

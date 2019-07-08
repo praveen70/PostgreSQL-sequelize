@@ -1,5 +1,6 @@
 const db = require('../../../../config/db.config');
 const MobileMi = db.mobileMi;
+const mobileOppo = db.mobileOppo;
 
 //post the user
 exports.create= (req, res) => {
@@ -22,7 +23,7 @@ exports.create= (req, res) => {
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-  MobileMi.findAll().then(mobiles => {
+  MobileMi.findAll({ include : [mobileOppo] }).then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {
@@ -67,13 +68,4 @@ exports.delete = (req, res) => {
   
 
 
-  exports.findAllMobile = (req, res) => {
-    // console.log("req.body", req);
-    MobileMi.findAll().then(mobiles => {
-      //Send all CompanyMaster to Client
-      res.json(mobiles);
-    }).catch(err => {
-          console.log(err);
-          res.status(500).json({msg: "error", details: err});
-        });
-  };
+  

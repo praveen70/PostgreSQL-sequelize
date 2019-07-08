@@ -27,7 +27,7 @@ const Slider = () => {
 			<div className="each-fade" style={{ marginTop: 20 }}>
 				<div className="image-container">
 					<img src={fadeImages[0]} style={{ width: '100%' }} />
-				</div>
+				</div>0/HR/tree/m
 			</div>
 			<div className="each-fade" style={{ marginTop: 20 }}>
 				<div className="image-container">
