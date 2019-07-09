@@ -44,11 +44,17 @@ db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 //   sourceKey: db.mobileOppo.uuid,
 // })
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+
+// Object.keys(db).forEach(modelName => {
+//   if (db[modelName].associate) {
+//     db[modelName].associate(db);
+//   }
+// });
+
+Object.keys(db).forEach(key => {
+  if ('associate' in db[key]) {
+    db[key].associate(db);
   }
 });
-
 
 module.exports = db;

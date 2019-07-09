@@ -12,7 +12,7 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {

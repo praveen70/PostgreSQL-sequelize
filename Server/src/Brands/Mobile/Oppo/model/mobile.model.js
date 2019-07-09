@@ -1,8 +1,8 @@
-module.exports = (sequelize, Sequelize) => {
+module.exports = (sequelize, Sequelize, DataTypes) => {
     const mobileOppo = sequelize.define('mobileOppo', {
         uuid: {
             type: Sequelize.UUID,
-            defaultValue: Sequelize.UUIDV1,
+            defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
             // default: sequelize.fn('uuid_generate_v4')
         
@@ -37,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
     });
     mobileOppo.associate = function(models) {
        
-        mobileOppo.belongsTo(models.mobileMi, { foreignKey: 'mobilesMiUuid' })
+        mobileOppo.belongsTo(models.mobileMi, { foreignKey: 'mobilesMiUuid' , allowNull: false});
     };
     
     return mobileOppo;

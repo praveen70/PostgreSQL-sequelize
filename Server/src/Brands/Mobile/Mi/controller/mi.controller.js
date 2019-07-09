@@ -4,6 +4,25 @@ const mobileOppo = db.mobileOppo;
 
 //post the user
 exports.create= (req, res) => {
+  if(!req.body.mobilesName){
+    throw new Error("Mobile Name Connot be Blank")
+  }
+  if(!req.body.price){
+    throw new Error("Mobile Name Connot be price")
+
+  }
+  if(!req.body.camera){
+    throw new Error("Mobile Name Connot be camera")
+
+  }
+  if(!req.body.battery){
+    throw new Error("Mobile Name Connot be battery")
+
+  }
+  if(!req.body.description){
+    throw new Error("Mobile Name Connot be description")
+
+  }else{
     MobileMi.create({
     "mobilesName": req.body.mobilesName, 
     "price": req.body.price,
@@ -16,6 +35,8 @@ exports.create= (req, res) => {
     // Send created employee to client
     res.send(mobiles);
 });
+
+  }
  
 };
 
@@ -23,7 +44,10 @@ exports.create= (req, res) => {
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-  MobileMi.findAll({ include : [mobileOppo] }).then(mobiles => {
+  MobileMi.findAll({ 
+    
+    include : [mobileOppo] 
+  }).then(mobiles => {
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {
