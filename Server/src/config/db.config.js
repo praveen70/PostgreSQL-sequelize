@@ -31,25 +31,10 @@ db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequeliz
 //db.file = require('../Fileupload/model/fileupload.model')(sequelize, Sequelize);
 
 db.files = require('../../app/model/file.model')(sequelize, Sequelize);
-//Relations
-//db.mobileOppo.belongsTo(db.mobileVivo);
-// db.mobileOppo.belongsTo(db.mobileVivo, {
-//   constraints: true,
-//   foreignKey: db.mobileVivo.uuid,
-//   sourceKey: db.mobileVivo.uuid,
-// })
-// db.mobileVivo.hasMany(db.mobileOppo, {
-//   constraints: true,
-//   foreignKey: db.mobileOppo.uuid,
-//   sourceKey: db.mobileOppo.uuid,
-// })
 
-
-// Object.keys(db).forEach(modelName => {
-//   if (db[modelName].associate) {
-//     db[modelName].associate(db);
-//   }
-// });
+db.groups = require("../Allproducts/model/group.model")(sequelize, Sequelize);
+db.categories = require("../Allproducts/model/category.model")(sequelize, Sequelize);
+db.product = require("../Allproducts/model/product.model")(sequelize, Sequelize);
 
 Object.keys(db).forEach(key => {
   if ('associate' in db[key]) {

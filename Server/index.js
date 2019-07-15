@@ -12,7 +12,7 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {
@@ -27,6 +27,12 @@ require('./src/Brands/Mobile/vivo/route/vivo.route')(app);
 require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
 require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
 require('./app/route/file.router')(app);
+
+require('./src/Allproducts/route/group.route')(app);
+require('./src/Allproducts/route/category.route')(app);
+require('./src/Allproducts/route/product.route')(app);
+
+
 
 // Create a Server
 var server = app.listen(8081, function () {

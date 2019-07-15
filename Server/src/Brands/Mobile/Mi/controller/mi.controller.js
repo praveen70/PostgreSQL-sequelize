@@ -48,6 +48,7 @@ exports.create= (req, res) => {
     
     include : [mobileOppo] 
   }).then(mobiles => {
+    console.log(mobiles);
 		//Send all CompanyMaster to Client
 		res.json(mobiles);
 	}).catch(err => {

@@ -31,6 +31,11 @@ module.exports = (sequelize, Sequelize) => {
     {
         timestamps:false    
     });
+
+    Vivo.associate = function(models) {
+       
+        Vivo.belongsTo(models.mobileMi, { foreignKey: 'mobileMiUuid' , allowNull: false});
+    };
     
     return Vivo;
-  }
+  };

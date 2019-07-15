@@ -1,6 +1,5 @@
 const db = require('../../../../config/db.config');
 const Mobile = db.mobileOppo;
-const mobileVivo =  db.mobileVivo;
 //post the user
 exports.create= (req, res) => {
   if(!req.body.mobilesName){
@@ -29,6 +28,7 @@ exports.create= (req, res) => {
     "camera": req.body.camera, 
     "battery": req.body.battery,
     "description": req.body.description,
+    "mobileMiUuid" : req.body.mobileMiUuid
     
   })
   .then(mobiles => {		

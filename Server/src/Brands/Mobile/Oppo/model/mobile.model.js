@@ -37,8 +37,8 @@ module.exports = (sequelize, Sequelize, DataTypes) => {
     });
     mobileOppo.associate = function(models) {
        
-        mobileOppo.belongsTo(models.mobileMi, { foreignKey: 'mobilesMiUuid' , allowNull: false});
+        mobileOppo.belongsTo(models.mobileMi, { foreignKey: 'mobileMiUuid' , allowNull: false});
     };
     
     return mobileOppo;
-  }
+  };

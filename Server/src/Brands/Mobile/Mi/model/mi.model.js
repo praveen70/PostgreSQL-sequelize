@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const mobileMi = sequelize.define('mobilesMi', {
+    const mobileMis = sequelize.define('mobileMi', {
         uuid: {
             type: Sequelize.UUID,
             defaultValue: Sequelize.UUIDV1,
@@ -32,9 +32,9 @@ module.exports = (sequelize, Sequelize) => {
         timestamps:false    
     });
 
-    mobileMi.associate = function(models) {
-        mobileMi.hasMany(models.mobileOppo);
+    mobileMis.associate = function(models) {
+        mobileMis.hasMany(models.mobileOppo);
     };
     
-    return mobileMi;
+    return mobileMis;
   };
