@@ -22,6 +22,16 @@ module.exports = (sequelize, Sequelize) => {
         categories.hasMany(models.product);
     };
     
-
+ 
+    // categories.associate =function(models) {
+    //       //associations can be defined here
+    //       categories.belongsToMany(models.groups, {
+    //           through: {
+    //               model: models.categories
+    //           },
+    //           foreignKey: 'categoryID'
+    //       });
+    //     };
+      
     return categories;
   };

@@ -20,8 +20,19 @@ module.exports = (sequelize, Sequelize) => {
     };
 
     
-    
+   
+        // groups.associate = function(models) {
+        //   // associations can be defined here
+        //   groups.belongsToMany(models.product, {
+        //       through: {
+        //           model: models.categories
+        //       },
+        //       foreignKey: 'groupGroupID'
+        //   });
+        // }
+      
+
     return groups;
-  }
+  };
 
   

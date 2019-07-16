@@ -12,7 +12,7 @@ app.use(bodyParser.json({ type: 'application/*+json' }))
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {
@@ -40,6 +40,6 @@ var server = app.listen(8081, function () {
   var host = server.address().address
   var port = server.address().port
  
-  console.log("App listening at http://%s:%s", host, port)
+  console.log("App listening at http://%s:%s", host, port);
 });
 module.exports = router;
