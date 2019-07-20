@@ -6,7 +6,8 @@ const Product = db.product;
 exports.create= (req, res) => {
     Product.create({
 
-    "productName": req.body.productName, 
+    "productName": req.body.productName,
+    "productFullName" : req.body.productFullName, 
     "price": req.body.price,
     "camera": req.body.camera, 
     "battery": req.body.battery,

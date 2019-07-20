@@ -1,19 +1,24 @@
-module.exports = function(app) {
+module.exports = function(app){
+    const upload = require('../../config/upload.config');
+    const fileWorker = require('../controller/fileupload.controller');
+    // const uploads = require("express-fileupload")
+
+    // app.use(uploads());
+
+    app.post('/api/uploadfile',  upload.single("file"), fileWorker.uploadFile);
+  };
+
+
+//   let express = require('express');
+// let router = express.Router();
+// let upload = require('../config/multer.config.js');
  
-    const file= require('../controller/fileupload.controller ');
-    
-    // Create a new Employee
-    app.post('/api/file', file.create);
+// const fileWorker = require('../controllers/file.controller.js');
  
-    // Retrieve all Employee
-//     app.get('/api/empdocs', empdocs.findAll);
+// router.post('/api/file/upload', upload.single("file"), fileWorker.uploadFile);
  
-// //     // Retrieve a single Customer by Id
-//     app.get('/api/empdocs/:empdocId', empdocs.findById);
+// router.get('/api/file/info', fileWorker.listAllFiles);
  
-// //     // // Update a Customer with Id
-//     app.put('/api/empdocs/:empdocId', empdocs.update);
+// router.get('/api/file/:id', fileWorker.downloadFile);
  
-// //     // // Delete a Customer with Id
-//     app.delete('/api/empdocs/:empdocId', empdocs.delete);
-};
+// module.exports = router;

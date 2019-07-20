@@ -2,21 +2,27 @@ var express = require('express');
 var app = express();
 var cors = require("cors");
 var router = express.Router();
+const upload = require("express-fileupload")
+const profile = require('./src/profile');
 
 var bodyParser = require('body-parser');
 app.use(cors());
 app.use(bodyParser.json())
 
+global.__basedir = __dirname;
+
+app.use(upload());
 app.use(bodyParser.json({ type: 'application/*+json' }))
 
+app.use('/profile', profile)
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {
-  console.log(err)
+  console.log(err); 
 });
 
 require('./src/Signup/route/signup.route')(app);
@@ -31,7 +37,7 @@ require('./app/route/file.router')(app);
 require('./src/Allproducts/route/group.route')(app);
 require('./src/Allproducts/route/category.route')(app);
 require('./src/Allproducts/route/product.route')(app);
-
+require('./src/Fileupload/route/fileupload.route')(app);
 
 
 // Create a Server

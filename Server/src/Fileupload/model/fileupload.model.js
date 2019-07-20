@@ -1,20 +1,21 @@
 module.exports = (sequelize, Sequelize) => {
-    const Fileupload = sequelize.define('file', {
-        fileId : {
-            type: Sequelize.STRING,
-        },
-        fileName : {
-            type:Sequelize.STRING,
-        },
-        fileType : {
-            type:Sequelize.STRING,
-        },
-        filePathe : {
-            type: Sequelize.STRING,
-        },
-        status: {
-            type: Sequelize.STRING
-        }
-    });
-    return Fileupload;
+	const File = sequelize.define('file', {
+            id: {
+                  type: Sequelize.UUID,
+                  defaultValue: Sequelize.UUIDV1,
+                  primaryKey: true,
+              
+              },
+            type: {
+                  type: Sequelize.STRING
+                },
+                name: {
+                  type: Sequelize.STRING
+                },
+                data: {
+                  type: Sequelize.BLOB('long')
+                }
+
+	});
+	return File;
 };

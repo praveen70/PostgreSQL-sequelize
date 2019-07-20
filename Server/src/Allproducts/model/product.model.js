@@ -10,6 +10,10 @@ module.exports = (sequelize, Sequelize) => {
 			productName: {
 				type: Sequelize.STRING
 			},
+			productFullName: {
+				type: Sequelize.STRING
+			},
+
 			price: {
 				type: Sequelize.STRING
 			},
