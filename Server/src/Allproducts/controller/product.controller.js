@@ -1,5 +1,5 @@
 const db = require('../../config/db.config');
-const Product = db.product;
+const Product = db.products;
 
 
 
@@ -22,3 +22,18 @@ exports.create= (req, res) => {
 
  
 };
+
+
+exports.findAll = (req, res) => {
+  return Product.findAll()
+      .then((Products) => {
+        // res.json(Products);
+
+        return Products;
+        
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ msg: 'error', details: err });
+      });
+  };

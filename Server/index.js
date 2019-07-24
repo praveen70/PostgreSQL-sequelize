@@ -27,16 +27,18 @@ db.sequelize.sync({force: false}).then(() => {
 
 require('./src/Signup/route/signup.route')(app);
 require('./src/Signin/route/signin.route')(app);
-require('./src/Brands/Mobile/Mi/route/mi.route')(app);
-require('./src/Brands/Mobile/Oppo/route/mobile.route')(app);
-require('./src/Brands/Mobile/vivo/route/vivo.route')(app);
-require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
-require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
+// require('./src/Brands/Mobile/Mi/route/mi.route')(app);
+// require('./src/Brands/Mobile/Oppo/route/mobile.route')(app);
+// require('./src/Brands/Mobile/vivo/route/vivo.route')(app);
+// require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
+// require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
 require('./app/route/file.router')(app);
 
 require('./src/Allproducts/route/group.route')(app);
 require('./src/Allproducts/route/category.route')(app);
 require('./src/Allproducts/route/product.route')(app);
+require('./src/Allproducts/route/mobileAccessories.route')(app);
+
 require('./src/Fileupload/route/fileupload.route')(app);
 
 

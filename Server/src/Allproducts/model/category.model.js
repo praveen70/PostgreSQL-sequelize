@@ -19,8 +19,19 @@ module.exports = (sequelize, Sequelize) => {
     };
     
     categories.associate = function(models) {
-        categories.hasMany(models.product);
+        categories.hasMany(models.products);
     };
+
+    // categories.associate = function(models) {
+    //     categories.hasOne(models.mobileAccessories);
+    // };
+
+    // categories.associate = (models) => {
+    //     categories.belongsToMany(models.mobileaccessories, {
+    //       through: 'mobileaccessories',
+    //       foreignKey: 'categoryCategoryID'
+    //     });
+    //   };
     
  
     // categories.associate =function(models) {

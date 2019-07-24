@@ -1,10 +1,10 @@
 module.exports = function(app) {
 
-    const product = require('../controller/product.controller');
+    const MobileAccessories = require('../controller/mobileAccessories.controller');
 
-    app.post('/api/product', product.create);
+    app.post('/api/MobileAccessories', MobileAccessories.create);
 
-    app.get('/api/product', product.findAll);
+    // app.get('/api/product', product.findAll);
 
     // app.get('/api/mobileOppo/:id', mobile.findById);
 

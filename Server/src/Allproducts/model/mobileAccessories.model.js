@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-	const Product = sequelize.define(
-		'products',
+	const MobileAccessories = sequelize.define(
+		'mobileAccessories',
 		{
 			productID: {
 				type: Sequelize.UUID,
@@ -17,12 +17,15 @@ module.exports = (sequelize, Sequelize) => {
 			price: {
 				type: Sequelize.STRING
 			},
-			camera: {
+			services: {
 				type: Sequelize.STRING
 			},
-			battery: {
+			highlights: {
 				type: Sequelize.STRING
-			},
+            },
+            seller: {
+                type: Sequelize.STRING
+            },
 			description: {
 				type: Sequelize.STRING
 			}
@@ -32,11 +35,11 @@ module.exports = (sequelize, Sequelize) => {
 		}
     );
 
-    Product.associate = function(models) {
-        Product.belongsTo(models.categories, { foreignKey: 'categoryCategoryID' , allowNull: false});
+    MobileAccessories.associate = function(models) {
+        MobileAccessories.belongsTo(models.categories, { foreignKey: 'categoryCategoryID' , allowNull: false});
     };
 
 
 
-	return Product;
+	return MobileAccessories;
 };
