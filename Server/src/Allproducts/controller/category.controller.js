@@ -16,7 +16,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-return Category.findAll({
+ Category.findAll({
 		include: [ { model :Product }, ]
 	})
 		.then((categories) => {

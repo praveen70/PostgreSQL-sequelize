@@ -19,9 +19,14 @@ exports.findAll = (req, res) => {
 	})
 		.then((groups) => {
 			Product.findAll().then((data) => {
-				let allData = groups.concat(data);
-				res.json(allData);
-				console.log('126582222222222222222222222222', allData);
+				let obj = {
+					groups:groups,	
+					products:data
+				};
+        		//let allData = groups.concat(data); 
+				// let allData = groups.concat(data);
+				res.json(obj);
+				console.log('126582222222222222222222222222', obj);
 			});
 
 			// res.json(groups);

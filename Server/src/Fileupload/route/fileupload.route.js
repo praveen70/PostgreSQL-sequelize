@@ -5,7 +5,7 @@ module.exports = function(app){
 
     // app.use(uploads());
 
-    app.post('/api/uploadfile',  upload.single("file"), fileWorker.uploadFile);
+    app.post('/api/uploadfile',  upload.single("upload"), fileWorker.uploadFile);
   };
 
 

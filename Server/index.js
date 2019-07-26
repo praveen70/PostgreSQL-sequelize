@@ -2,8 +2,19 @@ var express = require('express');
 var app = express();
 var cors = require("cors");
 var router = express.Router();
-const upload = require("express-fileupload")
+// const upload = require("express-fileupload")
 const profile = require('./src/profile');
+const multer = require('multer');
+
+const upload = multer({
+  dest: 'images'
+  
+});
+
+app.post('/upload', upload.single('upload'), (req, res, file) => {
+ console.log(req.file);
+  res.send();
+});
 
 var bodyParser = require('body-parser');
 app.use(cors());
@@ -11,14 +22,14 @@ app.use(bodyParser.json())
 
 global.__basedir = __dirname;
 
-app.use(upload());
+// app.use(upload());
 app.use(bodyParser.json({ type: 'application/*+json' }))
 
 app.use('/profile', profile)
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {

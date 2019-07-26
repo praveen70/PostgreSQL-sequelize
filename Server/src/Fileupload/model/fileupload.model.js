@@ -6,14 +6,23 @@ module.exports = (sequelize, Sequelize) => {
                   primaryKey: true,
               
               },
-            type: {
+              type: {
                   type: Sequelize.STRING
                 },
-                name: {
+                fileName: {
                   type: Sequelize.STRING
                 },
-                data: {
-                  type: Sequelize.BLOB('long')
+                originalName: {
+                  type: Sequelize.STRING
+                },
+                docPath: {
+                  type: Sequelize.STRING
+                },
+                path: {
+                  type: Sequelize.STRING,
+                },
+                size: {
+                  type: Sequelize.STRING,
                 }
 
 	});

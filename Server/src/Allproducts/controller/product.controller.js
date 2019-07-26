@@ -28,9 +28,7 @@ exports.findAll = (req, res) => {
   return Product.findAll()
       .then((Products) => {
         // res.json(Products);
-
-        return Products;
-        
+        return Products;     
       })
       .catch((err) => {
         console.log(err);

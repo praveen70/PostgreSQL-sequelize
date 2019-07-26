@@ -1,49 +1,58 @@
 const db = require('../../config/db.config.js');
 const File = db.file;
-const fs = require('fs');
 
-exports.uploadFile = (req, res) => {
-  console.log(req.files);
-   if(req.files){
-    // let [ { name } ] = req.files
-    //     console.log(name); 
-    };
-    // File.create({
-    //   Id: req.body.empId,
-    //   docName: req.body.docName,
-    //   docType: req.body.docType,
-    //   docPath: req.body.docPath,
-    //   status: req.body.status
-    // }).then(() => {
-    //   res.json({msg:'File uploaded successfully! -> filename = ' + req.file.docName});
-    // }).catch(err => {
-    //   console.log(err);
-    //   res.json({msg: 'Error', detail: err});
-    // });
+const errorMiddileware = (req, res, next) => {
+	throw new Error('From my');
+};
 
-  // File.create({
-  //   Id: req.body.empId,
+exports.uploadFile = (req, res, error) => {
+	console.log(req.file.path);
+	if (req.file === undefined) {
+		res.send({ error: 'Error: No File Selected!' });
+		return false;
+	} else {
+		// if (!req.file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+		// 	res.send('Only image files are allowed!');
+		// }
+		File.create({
+			fileName: req.file.originalname,
+			originalName: req.file.originalname,
+			type: req.file.mimetype,
+			docPath: req.file.destination,
+			size: req.file.size,
+			path: req.file.path
+		})
+			.then(() => {
+				res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.fileName });
+			})
+			.catch((err) => {
+				console.log(err);
+				res.json({ msg: 'Error', detail: err });
+			});
+	}
+
+	// File.create({
+	//   Id: req.body.empId,
 	//   docName: req.body.docName,
 	//   docType: req.body.docType,
 	//   docPath: req.body.docPath,
 	//   status: req.body.status
-  //   }).then(() => {
-  //     file.mv('../../image' + __filename, function(err){
-  //       if(err){
-  //         console.log(err);
-  //         res.send('error occurred');
-  //       }else{
-  //         res.send("Done")
-  //       }
-  //     });
-  //     res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.docName });
-  //   });
-    // .catch((err) => {
-    //   console.log(err);
-    //   res.json({ msg: 'Error', detail: err });
-    // });
+	//   }).then(() => {
+	//     file.mv('../../image' + __filename, function(err){
+	//       if(err){
+	//         console.log(err);
+	//         res.send('error occurred');
+	//       }else{
+	//         res.send("Done")
+	//       }
+	//     });
+	//     res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.docName });
+	//   });
+	// .catch((err) => {
+	//   console.log(err);
+	//   res.json({ msg: 'Error', detail: err });
+	// });
 };
-
 
 // Upload a Multipart-File then saving it to MySQL database
 // exports.upload = (req, res, err) => {
@@ -66,7 +75,6 @@ exports.uploadFile = (req, res) => {
 //     }
 //   })
 // };
-
 
 // // console.log(db.empdocs);
 // // Post a Employee
