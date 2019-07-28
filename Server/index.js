@@ -4,17 +4,17 @@ var cors = require("cors");
 var router = express.Router();
 // const upload = require("express-fileupload")
 const profile = require('./src/profile');
-const multer = require('multer');
+// const multer = require('multer');
 
-const upload = multer({
-  dest: 'images'
+// const upload = multer({
+//   dest: 'images'
   
-});
+// });
 
-app.post('/upload', upload.single('upload'), (req, res, file) => {
- console.log(req.file);
-  res.send();
-});
+// app.post('/upload', upload.single('upload'), (req, res, file) => {
+//  console.log(req.file);
+//   res.send();
+// });
 
 var bodyParser = require('body-parser');
 app.use(cors());
@@ -29,7 +29,7 @@ app.use('/profile', profile)
 
 const db = require("./src/config/db.config");
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
   console.log('Drop and Resync with { force: true }');
   
 }).catch(function(err) {
@@ -54,7 +54,7 @@ require('./src/Fileupload/route/fileupload.route')(app);
 
 
 // Create a Server
-var server = app.listen(8081, function () {
+var server = app.listen(8082, function () {
  
   var host = server.address().address
   var port = server.address().port

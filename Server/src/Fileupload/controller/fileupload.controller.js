@@ -23,7 +23,7 @@ exports.uploadFile = (req, res, error) => {
 			path: req.file.path
 		})
 			.then(() => {
-				res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.fileName });
+				res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.originalname });
 			})
 			.catch((err) => {
 				console.log(err);
@@ -31,85 +31,9 @@ exports.uploadFile = (req, res, error) => {
 			});
 	}
 
-	// File.create({
-	//   Id: req.body.empId,
-	//   docName: req.body.docName,
-	//   docType: req.body.docType,
-	//   docPath: req.body.docPath,
-	//   status: req.body.status
-	//   }).then(() => {
-	//     file.mv('../../image' + __filename, function(err){
-	//       if(err){
-	//         console.log(err);
-	//         res.send('error occurred');
-	//       }else{
-	//         res.send("Done")
-	//       }
-	//     });
-	//     res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.docName });
-	//   });
-	// .catch((err) => {
-	//   console.log(err);
-	//   res.json({ msg: 'Error', detail: err });
-	// });
+
 };
 
-// Upload a Multipart-File then saving it to MySQL database
-// exports.upload = (req, res, err) => {
-//   console.log("vsghdvhgsdhgvdshg")
-//   console.log(err.field);
-// 	console.log(req) ;
-// 	File.create({
-//     type: req.file.mimetype,
-//     name: req.file.originalname,
-//     data: fs.readFileSync(__basedir + '/image/' + req.file.filename)
-//   }).then(image => {
-//     try{
-//       fs.writeFileSync(__basedir + '/image' + image.name, image.data);
-
-//       // exit node.js app
-//       res.json({'msg': 'File uploaded successfully!', 'file': req.file});
-//     }catch(e){
-//       console.log(e);
-//       res.json({'err': err.field});
-//     }
-//   })
-// };
-
-// // console.log(db.empdocs);
-// // Post a Employee
-// exports.create = (req, res) => {
-// 	console.log("req body", req.body);
-// 	// Save to MySQL database
-// 	Empdoc.create({
-// 	  empId: req.body.empId,
-// 	  docName: req.body.docName,
-// 	  docType: req.body.docType,
-// 	  docPath: req.body.docPath,
-// 	  status: req.body.status
-// 	}).then(empdoc => {
-// 		// Send created employee to client
-// 		res.send(empdoc);
-// 	});
-// };
-
-//  exports.uploadEmpDoc = (empData) => {
-// 	console.log("empData", JSON.parse(empData));
-// 	var obj = JSON.parse(empData);
-// 	// Save to MySQL database
-// 	console.log("before insert",empData.empId);
-// 	Empdoc.create({
-// 	  empId: obj.empId,
-// 	  docName: obj.docName,
-// 	  docType: obj.docType,
-// 	  docPath: obj.docPath,
-// 	  status: obj.status
-// 	}).then(empdoc => {
-// 		// Send created employee to client
-// 		//res.send(empData);
-// 		console.log("after insert",empdoc);
-// 	}).catch(function(err){console.log("asdsad",err)});
-// };
 // // FETCH all Employee
 // exports.findAll = (req, res) => {
 // 	console.log('data');

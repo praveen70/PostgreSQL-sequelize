@@ -14,6 +14,7 @@ exports.create= (req, res) => {
     "highlights" : req.body.highlights,
     "seller" : req.body.seller,
     "description" : req.body.description,
+    "Warranty" : req.body.Warranty,
     "categoryCategoryID" : req.body.categoryCategoryID    
   })
   .then(Accessories => {		

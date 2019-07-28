@@ -16,14 +16,21 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
- Category.findAll({
-		include: [ { model :Product }, ]
+	Category.findAll({
+		include: [
+			{
+				model: Product,
+				required: true
+			},
+			{
+				model: MobileAccessories,
+				required: true
+			}
+		]
 	})
 		.then((categories) => {
-			// console.log(categories)
-			// res.json(categories);
+			res.json(categories);
 			return categories;
-			
 		})
 		.catch((err) => {
 			console.log(err);
