@@ -16,8 +16,7 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
 	Group.findAll({
-		// include: [ categories ]
-
+	
 		include: [
 			{
 			  model: categories,
