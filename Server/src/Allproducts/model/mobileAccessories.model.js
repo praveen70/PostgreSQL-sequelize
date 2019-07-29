@@ -3,11 +3,11 @@ module.exports = (sequelize, Sequelize) => {
 	const MobileAccessories = sequelize.define(
 		'mobileAccessories',
 		{
-			// productID: {
-			// 	type: Sequelize.UUID,
-			// 	defaultValue: Sequelize.UUIDV1,
-			// 	primaryKey: true
-			// },
+			productID: {
+				type: Sequelize.UUID,
+				defaultValue: Sequelize.UUIDV1,
+				primaryKey: true
+			},
 			productName: {
 				type: Sequelize.STRING
 			},
@@ -40,9 +40,9 @@ module.exports = (sequelize, Sequelize) => {
     );
 
 
-    MobileAccessories.associate = function(models) {
-        MobileAccessories.belongsTo(models.categories, {foreignKey: 'categoryCategoryID',	 allowNull: false  });
-    };
+    // MobileAccessories.associate = function(models) {
+    //     MobileAccessories.belongsTo(models.categories, {foreignKey: 'categoryCategoryID',	 allowNull: false  });
+    // };
 
 
 	return MobileAccessories;

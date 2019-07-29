@@ -21,13 +21,13 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 //Models/tables
-db.signup = require('../Signup/model/signup.model')(sequelize, Sequelize);
-db.signin = require('../Signin/model/signin.model')(sequelize, Sequelize);
 // db.mobileOppo = require('../Brands/Mobile/Oppo/model/mobile.model')(sequelize, Sequelize);
 // db.mobileVivo = require('../Brands/Mobile/vivo/model/vivo.model')(sequelize, Sequelize);
 // db.mobileMi = require('../Brands/Mobile/Mi/model/mi.model')(sequelize, Sequelize);
 // db.mobileAccessories = require('../Brands/MobileAccessories/model/mobileAccessories.model')(sequelize, Sequelize);
 // db.hpDesktop = require('../Brands/Laptops/DesktopPc/Hp/model/hp.model')(sequelize, Sequelize);
+db.signup = require('../Signup/model/signup.model')(sequelize, Sequelize);
+db.signin = require('../Signin/model/signin.model')(sequelize, Sequelize);
 db.file = require('../Fileupload/model/fileupload.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Allproducts/model/mobileAccessories.model')(sequelize, Sequelize);
 //db.files = require('../../app/model/file.model')(sequelize, Sequelize);
@@ -41,5 +41,12 @@ Object.keys(db).forEach(key => {
     db[key].associate(db);
   }
 });
+
+db.mobileAccessories.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  
+db.categories.hasMany(db.mobileAccessories);
+db.products.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  
+db.categories.hasMany(db.products);  
+db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });  
+db.groups.hasMany(db.categories);
 
 module.exports = db;

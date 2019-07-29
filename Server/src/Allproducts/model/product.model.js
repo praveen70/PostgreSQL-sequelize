@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-	const Product = sequelize.define(
+	const products = sequelize.define(
 		'products',
 		{
 			productID: {
@@ -32,11 +32,11 @@ module.exports = (sequelize, Sequelize) => {
 		}
     );
 
-    Product.associate = function(models) {
-        Product.belongsTo(models.categories, { foreignKey: 'categoryCategoryID' , allowNull: false, });
-    };
+    // products.associate = function(models) {
+    //     products.belongsTo(models.categories, { foreignKey: 'categoryCategoryID' , allowNull: false, });
+    // };
 
 
 
-	return Product;
+	return products;
 };

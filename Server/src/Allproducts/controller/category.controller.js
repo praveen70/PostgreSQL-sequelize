@@ -6,7 +6,7 @@ const MobileAccessories = db.mobileAccessories;
 //post
 exports.create = (req, res) => {
 	console.log(req.body);
-
+	
 	Category.create({
 		categoryName: req.body.categoryName,
 		groupGroupID: req.body.groupGroupID
@@ -16,17 +16,20 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-	Category.findAll({
+		Category.findAll({
 		include: [
 			{
-				model: Product,
-				required: true
+			  model: Product,
+			//   include: [
+			// 	{
+			// 	  model: MobileAccessories
+			// 	}
+			//   ]
 			},
 			{
-				model: MobileAccessories,
-				required: true
-			}
-		]
+				model: MobileAccessories
+			  }
+		  ]
 	})
 		.then((categories) => {
 			res.json(categories);

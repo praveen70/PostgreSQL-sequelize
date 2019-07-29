@@ -1,4 +1,3 @@
-const ma = require('./mobileAccessories.model');
 module.exports = (sequelize, Sequelize) => {
 	const categories = sequelize.define(
 		'categories',
@@ -17,16 +16,16 @@ module.exports = (sequelize, Sequelize) => {
 		}
 	);
 	
-    categories.associate = function(models) {
-		categories.hasMany(models.products, {foreignKey: 'categoryCategoryID',});
-    };
-    categories.associate = function(models) {
-		categories.hasMany(models.mobileaccessories, {foreignKey: 'categoryCategoryID', });
-    };
+    // categories.associate = function(models) {
+	// 	categories.hasMany(models.products);
+    // };
+    // categories.associate = function(models) {
+	// 	categories.hasMany(models.mobileaccessories, {foreignKey: 'categoryCategoryID', });
+    // };
 	
-	categories.associate = function(models) {
-		categories.belongsTo(models.groups, { foreignKey: 'groupGroupID', allowNull: false });
-	};
+	// categories.associate = function(models) {
+	// 	categories.belongsTo(models.groups, { foreignKey: 'groupGroupID', allowNull: false });
+	// };
 
 	return categories;
 };

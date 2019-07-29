@@ -27,7 +27,7 @@ exports.create= (req, res) => {
 exports.findAll = (req, res) => {
   return Product.findAll()
       .then((Products) => {
-        // res.json(Products);
+         res.json(Products);
         return Products;     
       })
       .catch((err) => {

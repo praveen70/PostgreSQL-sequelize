@@ -1,9 +1,10 @@
 const db = require('../../config/db.config');
 const Group = db.groups;
 const categories = db.categories;
-// const Product =  db.product;
+ const Products =  db.products;
 const cat = require('./category.controller');
 const Product = require('./product.controller');
+const MobileAccessories = db.mobileAccessories;
 
 exports.create = (req, res) => {
 	Group.create({
@@ -15,21 +16,44 @@ exports.create = (req, res) => {
 
 exports.findAll = (req, res) => {
 	Group.findAll({
-		include: [ categories ]
+		// include: [ categories ]
+
+		include: [
+			{
+			  model: categories,
+			  
+			  include: [
+				{
+				  model: Products
+				},
+				{
+					model: MobileAccessories
+				  },
+			  ]
+			//   ,
+			//   include: [
+			// 	{
+			// 	  model: MobileAccessories
+			// 	},
+
+			//   ]
+			}
+		  ]
 	})
 		.then((groups) => {
-			Product.findAll().then((data) => {
-				let obj = {
-					groups:groups,	
-					products:data
-				};
-        		//let allData = groups.concat(data); 
-				// let allData = groups.concat(data);
-				res.json(obj);
-				console.log('126582222222222222222222222222', obj);
-			});
+			
+			// Product.findAll().then((data) => {
+			// 	let obj = {
+			// 		groups:groups,	
+			// 		products:data
+			// 	};
+        	// 	//let allData = groups.concat(data); 
+			// 	// let allData = groups.concat(data);
+			// 	res.json(obj);
+			// 	console.log('126582222222222222222222222222', obj);
+			// });
 
-			// res.json(groups);
+			res.json(groups);
 		})
 		.catch((err) => {
 			console.log(err);
