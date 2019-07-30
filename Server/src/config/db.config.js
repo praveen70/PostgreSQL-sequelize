@@ -32,6 +32,8 @@ db.file = require('../Fileupload/model/fileupload.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Allproducts/model/mobileAccessories.model')(sequelize, Sequelize);
 //db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 
+
+db.enums = require('../Allproducts/model/enum.model')(sequelize, Sequelize);
 db.groups = require("../Allproducts/model/group.model")(sequelize, Sequelize);
 db.categories = require("../Allproducts/model/category.model")(sequelize, Sequelize);
 db.products = require("../Allproducts/model/product.model")(sequelize, Sequelize);
@@ -42,6 +44,11 @@ Object.keys(db).forEach(key => {
   }
 });
 
+// db.enums.belongsTo(db.products,  { foreignKey: 'productProductID' , allowNull: false, });  
+// db.products.hasMany(db.enums);
+
+db.file.belongsTo(db.products,  { foreignKey: 'productProductID' , allowNull: false, }); 
+db.products.hasMany(db.file);
 db.mobileAccessories.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  
 db.categories.hasMany(db.mobileAccessories);
 db.products.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  

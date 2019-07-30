@@ -2,9 +2,10 @@ const db = require('../../config/db.config');
 const Group = db.groups;
 const categories = db.categories;
  const Products =  db.products;
-const cat = require('./category.controller');
-const Product = require('./product.controller');
+// const cat = require('./category.controller');
+// const Product = require('./product.controller');
 const MobileAccessories = db.mobileAccessories;
+const Files = db.file;
 
 exports.create = (req, res) => {
 	Group.create({
@@ -23,7 +24,14 @@ exports.findAll = (req, res) => {
 			  
 			  include: [
 				{
-				  model: Products
+				  model: Products,
+				  	  
+			  include: [
+				{
+				  model: Files
+				},
+
+			  ]
 				},
 				{
 					model: MobileAccessories

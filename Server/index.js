@@ -44,7 +44,7 @@ require('./src/Signin/route/signin.route')(app);
 // require('./src/Brands/MobileAccessories/route/mobileAccessories.route')(app);
 // require('./src/Brands/Laptops/DesktopPc/Hp/route/hp.route')(app);
 require('./app/route/file.router')(app);
-
+require('./src/Allproducts/route/enum.route')(app);
 require('./src/Allproducts/route/group.route')(app);
 require('./src/Allproducts/route/category.route')(app);
 require('./src/Allproducts/route/product.route')(app);
@@ -56,8 +56,8 @@ require('./src/Fileupload/route/fileupload.route')(app);
 // Create a Server
 var server = app.listen(8082, function () {
  
-  var host = server.address().address
-  var port = server.address().port
+  var host = server.address().address;
+  var port = server.address().port;
  
   console.log("App listening at http://%s:%s", host, port);
 });
