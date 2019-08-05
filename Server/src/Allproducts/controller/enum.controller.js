@@ -8,20 +8,18 @@ exports.create = (req, res) => {
 		jeansSize: req.body.jeansSize,
 		quantity: req.body.quantity
 	}).then((enums) => {
-       	res.send(enums);
+		res.send(enums);
 	});
 };
 
-
 exports.findAll = (req, res) => {
-    return Enum.findAll()
-        .then((enums) => {
-            console.log(enums)
-           res.json(enums);
-          
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({ msg: 'error', details: err });
-        });
-    };
+	return Enum.findAll()
+		.then((enums) => {
+			console.log(enums);
+			res.json(enums);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({ msg: 'error', details: err });
+		});
+};

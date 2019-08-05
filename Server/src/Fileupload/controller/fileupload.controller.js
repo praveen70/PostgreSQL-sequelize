@@ -16,7 +16,7 @@ exports.uploadFile = (req, res, error) => {
 			docPath: req.file.destination,
 			size: req.file.size,
 			path: req.file.path,
-			productProductID : req.body.productProductID
+			productProductID: req.body.productProductID
 		})
 			.then(() => {
 				res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.originalname });
@@ -28,7 +28,7 @@ exports.uploadFile = (req, res, error) => {
 	}
 };
 
-//  FETCH all 
+//  FETCH all
 exports.findAll = (req, res) => {
 	console.log('data');
 	File.findAll()
@@ -57,7 +57,8 @@ exports.update = (req, res) => {
 	const id = req.params.id;
 	console.log(req.body);
 	console.log('req.params', req.params);
-	File.update({
+	File.update(
+		{
 			fileName: req.file.originalname,
 			originalName: req.file.originalname,
 			type: req.file.mimetype,

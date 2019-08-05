@@ -2,21 +2,19 @@ const env = require('./env.js');
 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(env.database, env.username, env.password, {
-  host: env.host,
-  dialect: env.dialect,
-  operatorsAliases: false,
-  pool: {
-    max: env.max,
-    min: env.pool.min,
-    acquire: env.pool.acquire,
-    idle: env.pool.idle
-  }
-
+	host: env.host,
+	dialect: env.dialect,
+	operatorsAliases: false,
+	pool: {
+		max: env.max,
+		min: env.pool.min,
+		acquire: env.pool.acquire,
+		idle: env.pool.idle
+	}
 });
 
 const db = {};
 
- 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
@@ -32,28 +30,27 @@ db.file = require('../Fileupload/model/fileupload.model')(sequelize, Sequelize);
 db.mobileAccessories = require('../Allproducts/model/mobileAccessories.model')(sequelize, Sequelize);
 //db.files = require('../../app/model/file.model')(sequelize, Sequelize);
 
-
 db.enums = require('../Allproducts/model/enum.model')(sequelize, Sequelize);
-db.groups = require("../Allproducts/model/group.model")(sequelize, Sequelize);
-db.categories = require("../Allproducts/model/category.model")(sequelize, Sequelize);
-db.products = require("../Allproducts/model/product.model")(sequelize, Sequelize);
+db.groups = require('../Allproducts/model/group.model')(sequelize, Sequelize);
+db.categories = require('../Allproducts/model/category.model')(sequelize, Sequelize);
+db.products = require('../Allproducts/model/product.model')(sequelize, Sequelize);
 
-Object.keys(db).forEach(key => {
-  if ('associate' in db[key]) {
-    db[key].associate(db);
-  }
+Object.keys(db).forEach((key) => {
+	if ('associate' in db[key]) {
+		db[key].associate(db);
+	}
 });
 
-// db.enums.belongsTo(db.products,  { foreignKey: 'productProductID' , allowNull: false, });  
+// db.enums.belongsTo(db.products,  { foreignKey: 'productProductID' , allowNull: false, });
 // db.products.hasMany(db.enums);
 
-db.file.belongsTo(db.products,  { foreignKey: 'productProductID' , allowNull: false, }); 
+db.file.belongsTo(db.products, { foreignKey: 'productProductID', allowNull: false });
 db.products.hasMany(db.file);
-db.mobileAccessories.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  
+db.mobileAccessories.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
 db.categories.hasMany(db.mobileAccessories);
-db.products.belongsTo(db.categories,  { foreignKey: 'categoryCategoryID' , allowNull: false, });  
-db.categories.hasMany(db.products);  
-db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });  
+db.products.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
+db.categories.hasMany(db.products);
+db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });
 db.groups.hasMany(db.categories);
 
 module.exports = db;

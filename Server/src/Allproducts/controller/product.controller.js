@@ -1,5 +1,6 @@
 const db = require('../../config/db.config');
 const Product = db.products;
+const Files = db.file;
 
 
 
@@ -25,7 +26,17 @@ exports.create= (req, res) => {
 
 
 exports.findAll = (req, res) => {
-  return Product.findAll()
+  return Product.findAll({
+    
+
+      include: [
+        {
+          model: Files
+        }
+      ]
+    
+    
+    })
       .then((Products) => {
          res.json(Products);
         return Products;     
