@@ -51,6 +51,7 @@ require('./src/Allproducts/route/product.route')(app);
 require('./src/Allproducts/route/mobileAccessories.route')(app);
 
 require('./src/Fileupload/route/fileupload.route')(app);
+require('./src/Allproducts/route/productName.route')(app);
 
 
 // Create a Server

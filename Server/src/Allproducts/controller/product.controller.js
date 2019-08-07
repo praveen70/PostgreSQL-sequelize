@@ -9,11 +9,12 @@ exports.create= (req, res) => {
 
     "productName": req.body.productName,
     "productFullName" : req.body.productFullName, 
+    "Processor" : req.body.Processor,
     "price": req.body.price,
     "camera": req.body.camera, 
     "battery": req.body.battery,
     "description": req.body.description,
-    "categoryCategoryID" : req.body.categoryCategoryID
+    "productnameProductnameID" : req.body.productnameProductnameID
     
   })
   .then(Products => {		

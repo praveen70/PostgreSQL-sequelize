@@ -2,6 +2,7 @@ const db = require('../../config/db.config');
 const Group = db.groups;
 const categories = db.categories;
 const Products = db.products;
+const ProductName = db.productName;
 // const cat = require('./category.controller');
 // const Product = require('./product.controller');
 const MobileAccessories = db.mobileAccessories;
@@ -23,11 +24,17 @@ exports.findAll = (req, res) => {
 
 				include: [
 					{
-						model: Products,
+						model: ProductName,
 
 						include: [
 							{
-								model: Files
+								model: Products,
+
+								include: [
+									{
+										model: Files
+									}
+								]
 							}
 						]
 					},

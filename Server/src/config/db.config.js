@@ -34,6 +34,7 @@ db.enums = require('../Allproducts/model/enum.model')(sequelize, Sequelize);
 db.groups = require('../Allproducts/model/group.model')(sequelize, Sequelize);
 db.categories = require('../Allproducts/model/category.model')(sequelize, Sequelize);
 db.products = require('../Allproducts/model/product.model')(sequelize, Sequelize);
+db.productName = require('../Allproducts/model/productName.model')(sequelize, Sequelize);
 
 Object.keys(db).forEach((key) => {
 	if ('associate' in db[key]) {
@@ -48,8 +49,16 @@ db.file.belongsTo(db.products, { foreignKey: 'productProductID', allowNull: fals
 db.products.hasMany(db.file);
 db.mobileAccessories.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
 db.categories.hasMany(db.mobileAccessories);
-db.products.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
-db.categories.hasMany(db.products);
+// db.products.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
+// db.categories.hasMany(db.products);
+
+
+db.products.belongsTo(db.productName, { foreignKey: 'productnameProductnameID', allowNull: false });
+db.productName.hasMany(db.products);
+
+db.productName.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
+db.categories.hasMany(db.productName);
+
 db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });
 db.groups.hasMany(db.categories);
 

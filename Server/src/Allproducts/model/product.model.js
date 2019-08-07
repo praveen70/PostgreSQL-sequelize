@@ -13,7 +13,9 @@ module.exports = (sequelize, Sequelize) => {
 			productFullName: {
 				type: Sequelize.STRING
 			},
-
+			Processor: {
+				type: Sequelize.STRING
+			},
 			price: {
 				type: Sequelize.STRING
 			},
