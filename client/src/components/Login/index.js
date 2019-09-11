@@ -1,21 +1,66 @@
-import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { USERS}  from  '../../Role';
 
-const Login = () => (
-  <Form>
-    <Form.Field>
-      <label>First Name</label>
-      <input placeholder='First Name' />
-    </Form.Field>
-    <Form.Field>
-      <label>Last Name</label>
-      <input placeholder='Last Name' />
-    </Form.Field>
-    <Form.Field>
-      <Checkbox label='I agree to the Terms and Conditions' />
-    </Form.Field>
-    <Button type='submit'>Submit</Button>
-  </Form>
-)
+class Login extends React.Component {
+	constructor(props) {
+		this.state = {
+			firstname: '',
+			password: ''
+		};
+	}
 
-export default Login
+	pageChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value)
+		this.setState({ [name]: value });
+  };
+  
+  submit = () => {
+    let data = {
+      firstname: this.state.firstname,
+      password: this.state.password,
+      "role" : 'admin'
+    }
+    USERS.map((item) => {
+      if(item.role === data.role){
+          return <h2>Praveen</h2>
+      }else{
+        return <span>No route</span>
+      }
+    })
+   
+  }
+
+	render() {
+		let { firstname, password } = this.state;
+		return (
+			<Form>
+				<Form.Field>
+					<label>First Name</label>
+					<input
+						placeholder="First Name"
+						name="firstname"
+						value={firstname}
+						onChange={(e) => this.pageChange(e)}
+					/>
+				</Form.Field>
+				<Form.Field>
+					<label>Password</label>
+					<input
+						placeholder="Password"
+						name="password"
+						value={password}
+						onChange={(e) => this.pageChange(e)}
+					/>
+				</Form.Field>
+				<Form.Field>
+					<Checkbox label="I agree to the Terms and Conditions" />
+				</Form.Field>
+				<Button type="submit" onClick={() => this.submit()}>Submit</Button>
+			</Form>
+		);
+	}
+}
+
+export default Login;

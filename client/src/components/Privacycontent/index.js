@@ -29,24 +29,4 @@ const Privacycontent = () => (
 </div>
 )
 
-export default Privacycontent
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Privacycontent;

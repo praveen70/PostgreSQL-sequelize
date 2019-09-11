@@ -8,6 +8,8 @@ import Home from '../Home';
 
 class Landingpage extends React.Component {
     render() {
+       
+        
         return (
             <div>
                 <Navbars />
