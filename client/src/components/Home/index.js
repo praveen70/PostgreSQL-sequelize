@@ -47,9 +47,7 @@ class Home extends React.Component {
         setTimeout(() => {
             this.setState({ToprefurbishedComp: true});
         },5000);
-        // setTimeout(() => {
-        //     this.setState({Privacycontent: true});
-        // },6000);
+       
 
     }
  

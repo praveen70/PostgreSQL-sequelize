@@ -5,25 +5,42 @@ import Submenu from '../Submenu';
 import Footer from '../Footer';
 import BacktoTop from '../BacktoTop';
 import Home from '../Home';
+import SignIn from '../Login/login'
+import { USERS } from '../../Role'
+
+
 
 class Landingpage extends React.Component {
-    render() {
-       
-        
+    constructor(props){
+        super(props)
+        this.state= {
+            role : [],
+        }
+    }
+    componentDidMount(){
+        USERS.map((item) => {
+            this.setState({
+                role: item.role
+            })
+        })
+    }
+    render() { 
+        const { role } =  this.state
         return (
             <div>
-                <Navbars />
-                <Submenu />
+                
                     <Router>
                         <Switch>
-                            <Route path="/" exact component={Home} />
+                        <Route path="/" exact render={() => <SignIn />}  />
+                            {/* {role === "admin" && <Route path="/" exact render={() => <Home />}  />}
+                            {role === "user" && <Route path="/" exact render={() => <Home />}  />} */}
                         </Switch>
                     </Router>
-                <BacktoTop />
-                <Footer/>
+               
             </div>
         )
     }
 }
 
 export default Landingpage;
+

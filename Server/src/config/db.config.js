@@ -36,6 +36,9 @@ db.categories = require('../Allproducts/model/category.model')(sequelize, Sequel
 db.products = require('../Allproducts/model/product.model')(sequelize, Sequelize);
 db.productName = require('../Allproducts/model/productName.model')(sequelize, Sequelize);
 
+db.role= require('../Role/model/role.model')(sequelize, Sequelize);
+db.permission = require('../Permission/model/permission.model')(sequelize, Sequelize);
+
 Object.keys(db).forEach((key) => {
 	if ('associate' in db[key]) {
 		db[key].associate(db);
@@ -62,4 +65,10 @@ db.categories.hasMany(db.productName);
 db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });
 db.groups.hasMany(db.categories);
 
+
+db.role.belongsTo(db.signup, { foreignKey: 'signupUserID', allowNull: false });
+db.signup.hasMany(db.role);
+
+db.permission.belongsTo(db.role, { foreignKey: 'roleRoleID', allowNull: false });
+db.role.hasMany(db.permission);
 module.exports = db;

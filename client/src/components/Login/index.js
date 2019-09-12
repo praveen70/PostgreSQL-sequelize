@@ -4,6 +4,7 @@ import { USERS}  from  '../../Role';
 
 class Login extends React.Component {
 	constructor(props) {
+		super(props)
 		this.state = {
 			firstname: '',
 			password: ''

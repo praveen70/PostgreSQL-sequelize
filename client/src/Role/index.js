@@ -11,4 +11,4 @@ let USERS = [
 ];
 
 
-export { USERS};
+export { USERS };

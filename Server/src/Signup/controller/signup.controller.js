@@ -1,5 +1,7 @@
 const db = require('../../config/db.config');
 const Signup = db.signup;
+const role = db.role;
+const Permission =  db.permission;
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 const env = require('../../config/env');
@@ -64,8 +66,19 @@ exports.create= (req, res) => {
 //fetching all user 
   exports.findAll = (req, res) => {
   // console.log("req.body", req);
-	Signup.findAll().then(signup => {
-		//Send all CompanyMaster to Client
+	Signup.findAll({
+    include: [
+    {
+      model: role,
+      include: [
+        {
+          model: Permission,
+        }
+      ]
+    }
+  ]
+    }).then(signup => {
+	
 		res.json(signup);
 	}).catch(err => {
         console.log(err);
