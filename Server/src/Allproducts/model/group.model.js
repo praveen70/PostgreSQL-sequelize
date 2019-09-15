@@ -12,7 +12,8 @@ module.exports = (sequelize, Sequelize) => {
             
     },
     {
-        timestamps:false    
+        timestamps:false ,
+        paranoid: true,   
     });
 
     groups.associate = function(models) {

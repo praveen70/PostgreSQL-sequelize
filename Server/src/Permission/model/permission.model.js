@@ -21,6 +21,8 @@ module.exports = (sequelize, Sequelize) => {
       deletePermission: {
         type: Sequelize.STRING
       }
+    },{
+      paranoid: true,
     });
     
     return Role;

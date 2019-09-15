@@ -9,6 +9,8 @@ module.exports = (sequelize, Sequelize) => {
       roleName: {
         type: Sequelize.STRING
       }
+    }, {
+      paranoid: true,
     });
     
     return Role;

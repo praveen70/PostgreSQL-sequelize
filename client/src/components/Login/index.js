@@ -17,7 +17,8 @@ class Login extends React.Component {
 		this.setState({ [name]: value });
   };
   
-  submit = () => {
+  submit = (e) => {
+	  e.preventDefault();
     let data = {
       firstname: this.state.firstname,
       password: this.state.password,
@@ -36,7 +37,7 @@ class Login extends React.Component {
 	render() {
 		let { firstname, password } = this.state;
 		return (
-			<Form>
+			<Form METHOD="POST">
 				<Form.Field>
 					<label>First Name</label>
 					<input
@@ -58,7 +59,7 @@ class Login extends React.Component {
 				<Form.Field>
 					<Checkbox label="I agree to the Terms and Conditions" />
 				</Form.Field>
-				<Button type="submit" onClick={() => this.submit()}>Submit</Button>
+				<Button type="submit" onClick={(e) => this.submit(e)}>Submit</Button>
 			</Form>
 		);
 	}
