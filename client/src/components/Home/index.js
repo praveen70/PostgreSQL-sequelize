@@ -6,7 +6,9 @@ import Toprefurbished from '../Toprefurbished';
 import Privacycontent from '../Privacycontent';
 import Offer from '../Offersonly';
 import { Skeleton } from 'antd';
-
+import Navbars from '../Navbar/index'
+import Submenu from '../Submenu/index'
+import { withRouter } from 'react-router-dom';
 
 
 // const Home = () => {
@@ -55,6 +57,8 @@ class Home extends React.Component {
         const {sliderComp, cardDataComp, ofeerComp, newMobileComp, ToprefurbishedComp} = this.state;
         return (
             <div>
+            <Navbars/>
+            <Submenu />
                 {sliderComp ? <Slider /> : <Skeleton />}
                 {cardDataComp ? <Carddata /> : <Skeleton />}
                 {ofeerComp ? <Offer /> : <Skeleton />}
@@ -71,4 +75,4 @@ class Home extends React.Component {
         )
     }
 }
-export default Home;
+export default withRouter(Home);

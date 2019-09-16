@@ -15,7 +15,8 @@ import BacktoTop from '../BacktoTop';
 import Home from '../Home';
 import SignIn from '../Login/login'
 import { USERS } from '../../Role'
-
+import Login from '../Login'
+import axios from 'axios'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -33,25 +34,49 @@ class Landingpage extends React.Component {
     constructor(props){
         super(props)
         this.state= {
-            role : [],
+            roleName : ''
         }
     }
-    componentDidMount(){
-        USERS.map((item) => {
-            this.setState({
-                role: item.role
-            })
-        })
-    }
+
+    componentDidMount() {
+        fetch("http://localhost:8082/api/signup/")
+          .then(res => res.json())
+          .then(
+            (result) => {
+                let localStorageID = localStorage.getItem("userID");
+                let [ { roleName }] = result
+                result.map((item) => {
+                    if(localStorageID === item.userID){
+                        let [ { roleName }] = item.roles
+                        this.setState({
+                          isLoaded: true,
+                          roleName: roleName
+                        });
+                        
+                        console.log(roleName)
+                    }
+                })
+            },
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          )
+      }
+
     render() { 
-        const { role } =  this.state
+        const { roleName } =  this.state
+       
         return (
             <div>
                  <Provider store={store}>
                 
                     <Router>
                         <Switch>
-                        <Route path="/" exact render={() => <SignIn />}  />
+                        <Route path="/" exact render={() => <Login />}  />
+                        {roleName  && <Route path="/home"  render={() => <Home />}  />}
                             {/* {role === "admin" && <Route path="/" exact render={() => <Home />}  />}
                             {role === "user" && <Route path="/" exact render={() => <Home />}  />} */}
                         </Switch>

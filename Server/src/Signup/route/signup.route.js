@@ -1,12 +1,14 @@
-//const authJwt = require('./verifyToken');	
+const authJwt = require('./verifyToken');	
 module.exports = function(app) {
     const signup = require('../controller/signup.controller');
  
     // Create a new Customer
-    app.post('/api/signup', signup.create);
+    app.post('/api/signup',  signup.create);
  
     // // Retrieve all Customer
-     app.get('/api/signup',signup.findAll);
+    app.get('/api/test/user', [authJwt.verifyToken], signup.userContent);
+    
+     app.get('/api/signup',  signup.findAll);
  
     // // Retrieve a single Customer by Id
      app.get('/api/signup/:id',  signup.findById);

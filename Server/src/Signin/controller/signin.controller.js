@@ -7,12 +7,13 @@ const env = require('../../config/env');
 
 //signin function
 exports.signin = (req, res) => {   
+  console.log(req.body)
     Signin.findOne({
       where: {
         email: req.body.email
       }
     }).then(user => {
-      console.log(user.email)
+      console.log(user.userID)
       if (!user) {
         return res.status(404).send('User Not Found.');
       }
@@ -28,7 +29,7 @@ exports.signin = (req, res) => {
         expiresIn: 1440 // expires in 24 hours
       });
       
-      res.status(200).send({ auth: true, accessToken: token });
+      res.status(200).send({ auth: true, accessToken: token , userID: user.userID });
       
     }).catch(err => {
       res.status(500).send('Error -> ' + err);

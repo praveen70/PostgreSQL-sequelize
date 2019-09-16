@@ -52,6 +52,7 @@ require('./src/Allproducts/route/mobileAccessories.route')(app);
 
 require('./src/Fileupload/route/fileupload.route')(app);
 require('./src/Allproducts/route/productName.route')(app);
+
 require('./src/Role/route/role.route')(app);
 require('./src/Permission/route/permission.route')(app);
 
