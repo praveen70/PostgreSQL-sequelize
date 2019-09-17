@@ -1,7 +1,6 @@
 import './imageslider.css';
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
-import { Carousel } from 'antd';
 
 const fadeImages = [
 	'https://rukminim1.flixcart.com/flap/3376/560/image/676ca540c0fe7dd6.jpg?q=50',

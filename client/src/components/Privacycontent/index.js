@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Card,  Button, Radio } from 'antd';
+import { Card } from 'antd';
 // import  './carddata.css'
 const Privacycontent = () => (
     <div style={{ background: '#ECECEC', padding: '25px'}}>

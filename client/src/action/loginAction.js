@@ -2,7 +2,7 @@ import { LOGIN_START , LOGIN_START_SUCCESS, LOGIN_START_FAILURE } from './action
 
 
 export function loginDataStart(payload){
-  console.log("action page",JSON.stringify(payload))
+  //console.log("action page",JSON.stringify(payload))
     return {
         type: LOGIN_START,
         loading: true,

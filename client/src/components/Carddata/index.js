@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Radio } from 'antd';
+import { Card, Button } from 'antd';
 import './carddata.css';
 const Carddata = () => (
 	<div style={{ background: '#ECECEC', padding: '25px' }}>

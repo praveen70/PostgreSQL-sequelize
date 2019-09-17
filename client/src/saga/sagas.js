@@ -17,11 +17,9 @@ export function* loginData() {
 
 export function* loginStartData(action) {
 	try {
-		const loginData = yield call(loginApi, action.payload);
-		let {userID} = loginData.data
-		localStorage.setItem("userID", userID);
-		if (loginData) {
-			yield put({ type: LOGIN_START_SUCCESS, payload: loginData });
+		const responeData = yield call(loginApi, action.payload);
+		if (responeData) {
+			yield put({ type: LOGIN_START_SUCCESS, payload: responeData });
 		}
 	} catch (err) {
 		yield put({ type: LOGIN_START_FAILURE, payload: err });

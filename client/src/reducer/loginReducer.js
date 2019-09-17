@@ -7,8 +7,7 @@ const initialState = {
 };
 
 export default function login(state = initialState, action = {}) {
-	// 
-	console.log("reducer" ,action);
+	// console.log("reducer" ,action);
 	switch (action.type) {
 		case LOGIN_START:
 			return {

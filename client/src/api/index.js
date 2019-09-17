@@ -1,16 +1,19 @@
 
 import axios from 'axios';
 
-
-
 export function loginApi(data) {
-	try {
-		const response = axios.post('http://localhost:8082/api/signin/' , data);
-		// let { userID} = response.data
-		// 	
-		console.log("from api",response)
-		return response;
-	} catch (error) {
-		return error;
-	}
+	return axios.post('http://localhost:8082/api/signin/' , data)
+		.then(res => 
+			getUserDetails(res));
 }
+
+function getUserDetails(data) {
+	localStorage.setItem("authToken",data.data.accessToken)
+	return axios.get('http://localhost:8082/api/signup/' + data.data.userID)
+		.then(res => 
+			
+			res.data
+			);
+}
+
+ 

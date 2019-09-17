@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
-import { USERS}  from  '../../Role';
 import './login.css';
 import { connect } from 'react-redux';
 import { loginDataStart  } from '../../action/loginAction';
+import { withRouter } from 'react-router-dom';
 
 class Login extends React.Component {
 	constructor(props) {
@@ -16,52 +15,77 @@ class Login extends React.Component {
 
 	inputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value)
 	this.setState({ [name]: value });
   };
   
-  submit = (e) => {
+  submit = async (e) => {
 	e.preventDefault();
 	let data =  this.state;
-	this.props.loginDataStart(data);
-	window.location.assign('home')
- 
-   
+	this.props.loginDataStart(data)
+	
+  };
+
+  routePage = (typeUser) => {
+	  let [{ roleName }] = typeUser.roles
+	  if(roleName === 'ADMIN'){
+		  this.props.history.push('/dashboard')
+	  }else if(roleName === 'USER'){
+		this.props.history.push('/home')
+	  }
+	
   }
+  
+  componentWillReceiveProps({...props}) {
+	this.routePage(props.payload)
+	
+}
 
 	render() {
+		
 		let { email, password } = this.state;
 		return (
-			<div class="login-form" >
-			<form  method="post" style={{marginTop: 200}}>
-				<h2 class="text-center">Log in</h2>       
-				<div class="form-group">
-					<input type="text" name="email" value={email} class="form-control" 
-					onChange={(e) => this.inputChange(e)}
-					placeholder="Username" required="required"/>
+		<div>
+			{/* {!this.props.payload ? */}
+				<div class="login-form" >
+					<form  method="post" style={{marginTop: 200}}>
+						<h2 class="text-center">Log in</h2>       
+						<div class="form-group">
+							<input type="text" name="email" value={email} class="form-control" 
+							onChange={(e) => this.inputChange(e)}
+							placeholder="Username" required="required"/>
+						</div>
+						<div class="form-group">
+							<input type="password" class="form-control" name="password" value={password} 
+							onChange={(e) => this.inputChange(e)}
+							placeholder="Password" required="required" />
+						</div>
+						<div class="form-group">
+							<button type="submit" class="btn btn-primary btn-block" onClick={(e) =>this.submit(e)}>Log in</button>
+						</div>
+						<div class="clearfix">
+							<label class="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
+							<a href="#" class="pull-right">Forgot Password?</a>
+						</div>        
+					</form>
+					<p class="text-center"><a href="#">Create an Account</a></p>
 				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" name="password" value={password} 
-					onChange={(e) => this.inputChange(e)}
-					placeholder="Password" required="required" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block" onClick={(e) =>this.submit(e)}>Log in</button>
-				</div>
-				<div class="clearfix">
-					<label class="pull-left checkbox-inline"><input type="checkbox" /> Remember me</label>
-					<a href="#" class="pull-right">Forgot Password?</a>
-				</div>        
-			</form>
-			<p class="text-center"><a href="#">Create an Account</a></p>
+{/* 
+				: this.props.payload.roles[0].roleName === 'ADMIN' ? 
+					<Redirect to="/dashboard" push={true} /> :
+						<Redirect to="/home" push={true} />
+			}} */}
+
+
 		</div>
+		
 		);
 	}
 }
 
 const mapStateToProps = (state) => {
+	
 	return {
-	  state: state,
+	  payload: state.login.payload,
 	
 	  
 	}
@@ -74,4 +98,4 @@ const mapStateToProps = (state) => {
 	}
   }
   
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
