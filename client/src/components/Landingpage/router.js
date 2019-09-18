@@ -13,20 +13,18 @@ class Routers extends Component {
             roleType: '',
         }
     }
-    componentWillReceiveProps({...props}) {
-        let [{roleName}] = props.payload.roles;
-        this.setState({ roleType : roleName })
-       
-    }
+    // componentWillReceiveProps({...props}) {
+    //     let [{roleName}] = props.payload.roles;
+    //     console.log('route', roleName)
+    //     this.setState({ roleType : roleName })  
+    // }
     render(){
-        // let userType = this.state.roleType
-       
         return(
             <Router>
                 <Switch>
                     <Route path="/" exact render={() => <Login  />}  />
-                     <PrivateRoute path="/home"  component={Home}  />}
-                    <PrivateRoute path="/dashboard"   component={Dashboard} />}
+                    <PrivateRoute path="/home"  component={Home}  />
+                    <PrivateRoute path="/dashboard"   component={Dashboard} />
                 </Switch>
             </Router>
         )

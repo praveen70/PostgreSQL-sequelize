@@ -1,8 +1,13 @@
 import React from 'react';
-import { Layout, Menu, Icon } from 'antd';
+import {  Icon } from 'semantic-ui-react'
+// import easy from '../../image/easy.jpg'
+import { Layout, Menu, Breadcrumb } from 'antd';
+import Group from '../Group'
+import Categories from '../Categories'
 import './home.css'
-const { Header, Sider, Content } = Layout;
+
 const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
 export default class Dashboard extends React.Component {
   state = {
@@ -18,62 +23,101 @@ export default class Dashboard extends React.Component {
   render() {
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-           
-            <SubMenu
-              key="sub1"
-              title={
-                <span>
-                  <Icon type="user-add" />
-                  <span>Role</span>
-                </span>
-              }
-            >
-              <Menu.Item key="1">Create Role</Menu.Item>
-              <Menu.Item key="2">Bill</Menu.Item>
-              <Menu.Item key="3">Alex</Menu.Item>
-            </SubMenu>
-            <SubMenu
-              key="sub2"
-              title={
-                <span>
-                  <Icon type="team" />
-                  <span>Root</span>
-                </span>
-              }
-            >
-              <Menu.Item key="4">Team 1</Menu.Item>
-              <Menu.Item key="5">Team 2</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="6">
-              <Icon type="file" />
-              <span>File</span>
-            </Menu.Item>
-             
-          </Menu>
-        </Sider>
-        <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
-          </Header>
-          <Content
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              background: '#fff',
-              minHeight: 980,
-            }}
+    <Header className="header">
+    
+      <div className="logo" >
+        <div className="d-flex justify-content-between" >
+          <div className="d-flex">
+            <Icon loading name='asterisk' className="icon"  />
+            <span className="buyanything" >Buyanything</span>
+          </div>
+          <Group className="group" />
+          <Categories /> 
+        </div>
+      </div>
+{/*        
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['2']}
+        style={{ lineHeight: '64px' }}
+      >
+            
+      </Menu> */}
+    </Header>
+    <Layout>
+      <Sider width={200} style={{ background: '#fff' }}>
+        <Menu
+          mode="inline"
+          theme="white"
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          style={{ height: '100%', borderRight: 0 }}
+        >
+       
+          <SubMenu
+            key="sub1"
+            title={
+              <span>
+                <Icon type="user" />
+                subnav 1
+              </span>
+            }
           >
-            Content
-          </Content>
-        </Layout>
+            <Menu.Item key="1">option1</Menu.Item>
+            <Menu.Item key="2">option2</Menu.Item>
+            <Menu.Item key="3">option3</Menu.Item>
+            <Menu.Item key="4">option4</Menu.Item>
+          </SubMenu>
+          <SubMenu
+            key="sub2"
+            title={
+              <span>
+                <Icon type="laptop" />
+                subnav 2
+              </span>
+            }
+          >
+            <Menu.Item key="5">option5</Menu.Item>
+            <Menu.Item key="6">option6</Menu.Item>
+            <Menu.Item key="7">option7</Menu.Item>
+            <Menu.Item key="8">option8</Menu.Item>
+          </SubMenu>
+          <SubMenu
+            key="sub3"
+            title={
+              <span>
+                <Icon type="notification" />
+                subnav 3
+              </span>
+            }
+          >
+            <Menu.Item key="9">option9</Menu.Item>
+            <Menu.Item key="10">option10</Menu.Item>
+            <Menu.Item key="11">option11</Menu.Item>
+            <Menu.Item key="12">option12</Menu.Item>
+          </SubMenu>
+        </Menu>
+      </Sider>
+      <Layout style={{ padding: '0 24px 24px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
+        <Content
+          style={{
+            background: '#fff',
+            padding: 24,
+            margin: 0,
+            minHeight: 980,
+          }}
+        >
+          Content
+        </Content>
       </Layout>
+    </Layout>
+  </Layout>
     );
   }
 }

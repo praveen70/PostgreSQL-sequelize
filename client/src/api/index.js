@@ -9,11 +9,20 @@ export function loginApi(data) {
 
 function getUserDetails(data) {
 	localStorage.setItem("authToken",data.data.accessToken)
+	
 	return axios.get('http://localhost:8082/api/signup/' + data.data.userID)
-		.then(res => 
-			
-			res.data
-			);
+		.then(res =>  res.data);
 }
 
+
+export function postRootGroupData(data) {
+	return axios.post('http://localhost:8082/api/group' , data)
+		.then(res =>  res.data );
+}
  
+
+export function getRootData() {
+	return axios.get('http://localhost:8082/api/group')
+		.then(res =>  res.data );
+	
+}

@@ -20,3 +20,18 @@
     font-size: 30px;
     margin-left: 19px;
   }
+
+  /* .group {
+    margin-left: 50px;
+  } */
+
+  .ant-layout .d-flex  .buyanything{
+     color: white;
+     font-size: 23px;
+  }
+
+  .ant-layout .d-flex  .icon {
+    color: white;
+    font-size: 23px;
+    margin-top: 20px;
+  }

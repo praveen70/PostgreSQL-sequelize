@@ -9,6 +9,7 @@ const MobileAccessories = db.mobileAccessories;
 const Files = db.file;
 
 exports.create = (req, res) => {
+	console.log(req.body.GroupName)
 	Group.create({
 		GroupName: req.body.GroupName
 	}).then((groups) => {

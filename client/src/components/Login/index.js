@@ -16,6 +16,7 @@ class Login extends React.Component {
 	inputChange = (e) => {
     const { name, value } = e.target;
 	this.setState({ [name]: value });
+	
   };
   
   submit = async (e) => {
@@ -35,7 +36,8 @@ class Login extends React.Component {
 	
   }
   
-  componentWillReceiveProps({...props}) {
+ componentWillReceiveProps({...props}) {
+	console.log("login", props.payload)
 	this.routePage(props.payload)
 	
 }
@@ -83,7 +85,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	
+	console.log('mapStateToProps', state)
 	return {
 	  payload: state.login.payload,
 	
@@ -94,7 +96,6 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
 	return {
 	  loginDataStart: (data) => { dispatch( loginDataStart(data) ) },
-   
 	}
   }
   

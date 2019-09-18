@@ -1,6 +1,5 @@
 import { all , spawn } from "redux-saga/effects";
-import {loginData
- } from './sagas';
+import { loginData, rootGroupData , getRootGroupData} from './sagas';
 
 
 
@@ -8,6 +7,8 @@ import {loginData
 export default function* rootSaga() {
     yield all([
         spawn(loginData),
+        spawn(rootGroupData),
+        spawn(getRootGroupData),
        
     
     ])

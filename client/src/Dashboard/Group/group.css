@@ -1,0 +1,22 @@
+.groupName{
+    margin-left: 250px;
+    margin-top: 2px;
+}
+
+.d-flex .groupName span{
+    font-size: 15px;
+    color: white;
+
+}
+
+.ant-layout .d-flex .groupName .ant-btn:hover{
+    color:red;
+}
+
+.ant-layout .d-flex .groupName  svg{
+    font-size: 24px;
+    margin-right: auto;
+    margin: 0;
+    margin-left: 0;
+    color: white;
+}
