@@ -1,0 +1,13 @@
+
+
+.ant-layout .d-flex .username .name {
+   font-size: 15px;
+   color: white;
+    margin-left: 5px;
+}
+
+.ant-badge-count {
+    background: green;
+    font-size: 13px;
+
+}

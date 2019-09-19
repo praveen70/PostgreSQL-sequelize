@@ -26,3 +26,8 @@ export function getRootData() {
 		.then(res =>  res.data );
 	
 }
+
+export function postCatrgoriesDataApi(data) {
+	return axios.post('http://localhost:8082/api/category' , data)
+		.then(res => console.log(res.data) && res.data );
+}

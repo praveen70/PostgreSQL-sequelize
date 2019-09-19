@@ -37,7 +37,6 @@ class Login extends React.Component {
   }
   
  componentWillReceiveProps({...props}) {
-	console.log("login", props.payload)
 	this.routePage(props.payload)
 	
 }
@@ -85,7 +84,6 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('mapStateToProps', state)
 	return {
 	  payload: state.login.payload,
 	

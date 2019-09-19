@@ -1,14 +1,3 @@
-.groupName{
-    margin-left: 250px;
-    margin-top: 2px;
-}
-
-.d-flex .groupName span{
-    font-size: 15px;
-    color: white;
-
-}
-
 .ant-layout .d-flex .groupName .ant-btn:hover{
     color:red;
 }

@@ -14,7 +14,7 @@ exports.create= (req, res) => {
     "camera": req.body.camera, 
     "battery": req.body.battery,
     "description": req.body.description,
-    "productnameProductnameID" : req.body.productnameProductnameID
+    "categoryCategoryID" : req.body.categoryCategoryID
     
   })
   .then(Products => {		

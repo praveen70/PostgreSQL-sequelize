@@ -1,16 +1,20 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Modal, Button , Input, Form , Icon ,Menu, Dropdown, message, Select} from 'antd';
+import { Modal, Button , Input, Form , Icon ,Spin,  Select, message} from 'antd';
 import { connect } from 'react-redux';
 import {  rootGroupnameStart } from '../../action/getRootAction';
+import { categoriesStart } from '../../action/categoriesAction';
 import './categories.css';
+
+
 const { Option } = Select;
 
 const Intialstate = {
              visible: false,
              confirmLoading: false,
-            categoryName: '',
-            id: '',
+             categoryName: '',
+             id: '',
+            
 }
 class Categories extends React.Component {
     state = {
@@ -30,14 +34,23 @@ class Categories extends React.Component {
     this.props.rootGroupnameStart()
   }
 
-  handleOk =  () => {
+  handleOk = async (e) => {
+    e.preventDefault();
+    let { id, categoryName } = this.state
+    if( !id ||  !categoryName) {
+      return false;
+    }else{
       let data = {
-        groupGroupID : this.state.id,
-        categoryName:  this.state.categoryName
+        groupGroupID : id,
+        categoryName: categoryName
       }
       console.log(data)
+     await this.props.categoriesStart(data)
+     message.success('Success');
        this.clearstate();
+    }
   }
+
   handleCancel = () => {
     console.log('Clicked cancel button');
     this.setState({
@@ -72,7 +85,7 @@ class Categories extends React.Component {
     const { visible, confirmLoading , categoryName } = this.state;
     return (
       
-      <div>
+      <div className="mx-3">
         <div className="groupName">
             <Button size= 'large' type="primary" onClick={this.showModal} ghost>
                 <Icon type="edit" />Add Categories
@@ -81,12 +94,13 @@ class Categories extends React.Component {
         <Modal
           title="Add Category"
           visible={visible}
-          onOk={this.handleOk}
+          onOk={(e) =>this.handleOk(e)}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
         >
             <Form className='d-flex justify-content-between'>
             <Form.Item label="Group Name">
+         
             <Select
             showSearch
             style={{ width: 150 }}
@@ -96,6 +110,7 @@ class Categories extends React.Component {
             onFocus={this.onFocus}
             onBlur={this.onBlur}
             onSearch={this.onSearch}
+            notFoundContent={this.props.loading ? <Spin size="small" /> : null}
             filterOption={(input, option) =>
               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
@@ -106,6 +121,7 @@ class Categories extends React.Component {
                 )
           })}
           </Select>
+          
             </Form.Item>
             <Form.Item label="Categorie Name">
                  <Input label="Rootname" placeholder="Enter A Name" name="categoryName" value={categoryName} allowClear  onChange={(e) => this.inputChange(e)} />
@@ -121,13 +137,16 @@ class Categories extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-      payload: state.getRootGroup.payload
+      payload: state.getRootGroup.payload,
+      loading:state.getRootGroup.loading,
+      categoriesPayload: state.categories.payload,
 	}
   }
   
   const mapDispatchToProps = (dispatch) => {
 	return {
         rootGroupnameStart: () => { dispatch( rootGroupnameStart() ) },
+        categoriesStart: (data) => { dispatch( categoriesStart(data) ) },
 	}
   }
   

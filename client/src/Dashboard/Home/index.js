@@ -1,10 +1,13 @@
 import React from 'react';
-import {  Icon } from 'semantic-ui-react'
+// import {  Icon } from 'semantic-ui-react'
 // import easy from '../../image/easy.jpg'
-import { Layout, Menu, Breadcrumb } from 'antd';
-import Group from '../Group'
-import Categories from '../Categories'
-import './home.css'
+import { Layout, Menu, Breadcrumb , Icon, Avatar, Badge} from 'antd';
+import Group from '../Group';
+import Categories from '../Categories';
+import Logout from '../Logout';
+import Usertype from '../Usertype'
+import Logo from '../Icon'
+import './home.css';
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
@@ -20,36 +23,44 @@ export default class Dashboard extends React.Component {
     });
   };
 
+  onCollapse = collapsed => {
+    console.log(collapsed);
+    this.setState({ collapsed });
+  };
+
+ 
   render() {
     return (
       <Layout>
+       
     <Header className="header">
     
       <div className="logo" >
-        <div className="d-flex justify-content-between" >
-          <div className="d-flex">
+        <div className="d-flex justify-content-between flex-row" >
+        <Logo/>
+          {/* <div className="d-flex">
             <Icon loading name='asterisk' className="icon"  />
             <span className="buyanything" >Buyanything</span>
+          </div> */}
+          <div className="d-flex">
+            <Group className="group" />
+            <Categories  /> 
+            <Logout className="logout" />
+            <Usertype />
+            {/* <span style={{ marginLeft: 24 }}>
+            <Badge count={1}>
+            <Avatar  size="large" icon="user" />
+            </Badge>
+          </span> */}
           </div>
-          <Group className="group" />
-          <Categories /> 
         </div>
       </div>
-{/*        
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
-      >
-            
-      </Menu> */}
     </Header>
     <Layout>
       <Sider width={200} style={{ background: '#fff' }}>
         <Menu
           mode="inline"
-          theme="white"
+          theme="red"
           defaultSelectedKeys={['1']}
           defaultOpenKeys={['sub1']}
           style={{ height: '100%', borderRight: 0 }}
@@ -59,12 +70,17 @@ export default class Dashboard extends React.Component {
             key="sub1"
             title={
               <span>
-                <Icon type="user" />
-                subnav 1
+                <Icon type="edit" />
+                Product
               </span>
             }
           >
-            <Menu.Item key="1">option1</Menu.Item>
+            <Menu.Item key="1">
+              <span>
+                <Icon type="plus-circle" theme= "twoTone" />
+                Add Product
+              </span>
+            </Menu.Item>
             <Menu.Item key="2">option2</Menu.Item>
             <Menu.Item key="3">option3</Menu.Item>
             <Menu.Item key="4">option4</Menu.Item>
@@ -110,13 +126,14 @@ export default class Dashboard extends React.Component {
             background: '#fff',
             padding: 24,
             margin: 0,
-            minHeight: 980,
+            minHeight: 600,
           }}
         >
           Content
         </Content>
       </Layout>
     </Layout>
+  
   </Layout>
     );
   }

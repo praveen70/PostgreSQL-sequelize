@@ -1,0 +1,16 @@
+
+
+.ant-layout .d-flex  .ant-btn .anticon svg{
+    color: white;
+    font-size: 23px;
+    margin: auto;
+}
+
+.ant-layout .d-flex  .ant-btn  span {
+    color:white;
+}
+
+.ant-btn-background-ghost.ant-btn-primary {
+    border-color: white;
+    
+}

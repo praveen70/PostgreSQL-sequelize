@@ -56,11 +56,11 @@ db.categories.hasMany(db.mobileAccessories);
 // db.categories.hasMany(db.products);
 
 
-db.products.belongsTo(db.productName, { foreignKey: 'productnameProductnameID', allowNull: false });
-db.productName.hasMany(db.products);
+// db.products.belongsTo(db.productName, { foreignKey: 'productnameProductnameID', allowNull: false });
+// db.productName.hasMany(db.products);
 
-db.productName.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
-db.categories.hasMany(db.productName);
+db.products.belongsTo(db.categories, { foreignKey: 'categoryCategoryID', allowNull: false });
+db.categories.hasMany(db.products);
 
 db.categories.belongsTo(db.groups, { foreignKey: 'groupGroupID', allowNull: false });
 db.groups.hasMany(db.categories);

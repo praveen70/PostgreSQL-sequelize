@@ -13,11 +13,10 @@ class Routers extends Component {
             roleType: '',
         }
     }
-    // componentWillReceiveProps({...props}) {
-    //     let [{roleName}] = props.payload.roles;
-    //     console.log('route', roleName)
-    //     this.setState({ roleType : roleName })  
-    // }
+    componentWillReceiveProps({...props}) {
+        let [{roleName}] = props.payload.roles;
+        localStorage.setItem("roleName",roleName) 
+    }
     render(){
         return(
             <Router>
@@ -32,7 +31,6 @@ class Routers extends Component {
 } 
 
 const mapStateToProps = (state) => {
-	// console.log("Router",state.login.payload)
 	return {
 	  payload: state.login.payload,
 	}

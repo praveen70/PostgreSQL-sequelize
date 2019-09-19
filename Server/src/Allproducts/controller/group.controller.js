@@ -25,33 +25,49 @@ exports.findAll = (req, res) => {
 
 				include: [
 					{
-						model: ProductName,
+						model: Products,
 
 						include: [
 							{
-								model: Products,
-
-								include: [
-									{
-										model: Files
-									}
-								]
+								model: Files
 							}
 						]
-					},
-					{
+					},{
 						model: MobileAccessories
 					}
 				]
-				//   ,
-				//   include: [
-				// 	{
-				// 	  model: MobileAccessories
-				// 	},
-
-				//   ]
 			}
+			
+
 		]
+
+		// include: [
+		// 	{
+		// 		model: categories,
+
+		// 		include: [
+		// 			{
+		// 				model: ProductName,
+
+		// 				include: [
+		// 					{
+		// 						model: Products,
+
+		// 						include: [
+		// 							{
+		// 								model: Files
+		// 							}
+		// 						]
+		// 					}
+		// 				]
+		// 			},
+		// 			{
+		// 				model: MobileAccessories
+		// 			}
+		// 		]
+			
+		// 	}
+		// ]
 	})
 		.then((groups) => {
 			// Product.findAll().then((data) => {
