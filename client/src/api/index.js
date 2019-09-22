@@ -31,3 +31,9 @@ export function postCatrgoriesDataApi(data) {
 	return axios.post('http://localhost:8082/api/category' , data)
 		.then(res => console.log(res.data) && res.data );
 }
+
+export function getCategoriesData() {
+	return axios.get('http://localhost:8082/api/category')
+		.then(res =>  res.data );
+	
+}

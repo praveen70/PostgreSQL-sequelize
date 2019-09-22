@@ -1,9 +1,10 @@
 import { call, put,  takeLatest } from 'redux-saga/effects';
-import api, { loginApi , postRootGroupData, getRootData , postCatrgoriesDataApi} from '../api/index';
+import api, { loginApi , postRootGroupData, getRootData , postCatrgoriesDataApi, getCategoriesData} from '../api/index';
 import {  LOGIN_START , LOGIN_START_SUCCESS, LOGIN_START_FAILURE } from '../action/actionType';
 import { POST_ROOT_GROUPNAME_START , POST_ROOT_GROUPNAME_SUCCESS, POST_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import {GET_ROOT_GROUPNAME_START , GET_ROOT_GROUPNAME_SUCCESS, GET_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import { POST_CATEGORIES_START , POST_CATEGORIES_SUCCESS, POST_CATEGORIES_FAILURE } from '../action/actionType';
+import { GET_CATEGORIES_START , GET_CATEGORIES_SUCCESS, GET_CATEGORIES_FAILURE } from '../action/actionType';
 
 
 
@@ -83,6 +84,26 @@ export function* postCatrgoriesDataSagas(action) {
 		}
 	} catch (err) {
 		yield put({ type: POST_CATEGORIES_FAILURE, payload: err });
+	}
+}
+///ends here
+
+
+//Get catrgories function starts form here
+
+export function* getCatrgoriesDataSagasStart() {
+	yield takeLatest(GET_CATEGORIES_START, getCatrgoriesDataSagas);
+}
+
+
+export function* getCatrgoriesDataSagas(action) {
+	try {
+		const responeCatrgoriesDataResponse = yield call(getCategoriesData, action.payload);
+		if (responeCatrgoriesDataResponse) {
+			yield put({ type: GET_CATEGORIES_SUCCESS, payload: responeCatrgoriesDataResponse });
+		}
+	} catch (err) {
+		yield put({ type: GET_CATEGORIES_FAILURE, payload: err });
 	}
 }
 ///ends here

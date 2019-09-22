@@ -1,4 +1,5 @@
 import React from 'react';
+import {  Link } from "react-router-dom";
 // import {  Icon } from 'semantic-ui-react'
 // import easy from '../../image/easy.jpg'
 import { Layout, Menu, Breadcrumb , Icon, Avatar, Badge} from 'antd';
@@ -78,7 +79,7 @@ export default class Dashboard extends React.Component {
             <Menu.Item key="1">
               <span>
                 <Icon type="plus-circle" theme= "twoTone" />
-                Add Product
+                <Link to="/products">Add Product</Link>
               </span>
             </Menu.Item>
             <Menu.Item key="2">option2</Menu.Item>
@@ -129,7 +130,7 @@ export default class Dashboard extends React.Component {
             minHeight: 600,
           }}
         >
-          Content
+          {this.props.children}
         </Content>
       </Layout>
     </Layout>

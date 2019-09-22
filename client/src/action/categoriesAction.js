@@ -2,7 +2,6 @@ import { POST_CATEGORIES_START , POST_CATEGORIES_SUCCESS, POST_CATEGORIES_FAILUR
 
 
 export function categoriesStart(payload){
-    console.log("action page",payload);
       return {
           type: POST_CATEGORIES_START,
           loading: true,
@@ -10,7 +9,7 @@ export function categoriesStart(payload){
       };
   }
   
-  export function rcategoriesSucess(payload){
+  export function categoriesSucess(payload){
       return {
           type: POST_CATEGORIES_SUCCESS,
           payload : payload,

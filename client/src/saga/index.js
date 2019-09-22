@@ -1,5 +1,8 @@
 import { all , spawn } from "redux-saga/effects";
-import { loginData, rootGroupData , getRootGroupData, postCatrgoriesDataSagasStart} from './sagas';
+import { loginData, rootGroupData , 
+    getRootGroupData, postCatrgoriesDataSagasStart,
+    getCatrgoriesDataSagasStart,
+} from './sagas';
 
 
 
@@ -10,6 +13,7 @@ export default function* rootSaga() {
         spawn(rootGroupData),
         spawn(getRootGroupData),
         spawn(postCatrgoriesDataSagasStart),
+        spawn(getCatrgoriesDataSagasStart),
        
     
     ])

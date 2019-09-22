@@ -5,6 +5,7 @@ import Login from '../Login';
 import Home from '../Home';
 import Dashboard from '../../Dashboard/Home/index';
 import PrivateRoute from '../../PrivateRoute'
+import Product from '../../Dashboard/Products';
 
 class Routers extends Component {
     constructor(props){
@@ -24,6 +25,7 @@ class Routers extends Component {
                     <Route path="/" exact render={() => <Login  />}  />
                     <PrivateRoute path="/home"  component={Home}  />
                     <PrivateRoute path="/dashboard"   component={Dashboard} />
+                    <PrivateRoute path='/product' component={Product} />
                 </Switch>
             </Router>
         )

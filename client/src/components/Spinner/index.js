@@ -4,15 +4,8 @@ import { Spin, Alert } from 'antd';
 const Spinner = () =>{
     return(
         <>
-        <Spin tip="Loading...">
-            <Alert
-            message="Alert message title"
-            description="Further details about the context of this alert."
-            type="info"
-            />
-        </Spin>
-
-   </>
+            <Spin size="large" />
+        </>
 )
 };
 

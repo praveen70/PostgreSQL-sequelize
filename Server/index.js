@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var cors = require("cors");
 var router = express.Router();
+var cors = require('cors')
+
 // const upload = require("express-fileupload")
 const profile = require('./src/profile');
 // const multer = require('multer');
@@ -21,6 +23,8 @@ app.use(cors());
 app.use(bodyParser.json())
 
 global.__basedir = __dirname;
+
+app.use(cors())
 
 // app.use(upload());
 app.use(bodyParser.json({ type: 'application/*+json' }))
