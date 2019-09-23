@@ -91,11 +91,11 @@ export default class Dashboard extends React.Component {
             title={
               <span>
                 <Icon type="laptop" />
-                subnav 2
+               Role
               </span>
             }
           >
-            <Menu.Item key="5">option5</Menu.Item>
+            <Menu.Item key="5">Add Role</Menu.Item>
             <Menu.Item key="6">option6</Menu.Item>
             <Menu.Item key="7">option7</Menu.Item>
             <Menu.Item key="8">option8</Menu.Item>

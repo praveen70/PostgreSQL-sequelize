@@ -37,3 +37,9 @@ export function getCategoriesData() {
 		.then(res =>  res.data );
 	
 }
+
+
+export function postProductApi(data) {
+	return axios.post('http://localhost:8082/api/product' , data)
+		.then(res => console.log(res.data) && res.data );
+}

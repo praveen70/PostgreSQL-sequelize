@@ -22,7 +22,7 @@ class Login extends React.Component {
   submit = async (e) => {
 	e.preventDefault();
 	let data =  this.state;
-	this.props.loginDataStart(data)
+	this.props.loginDataStart(data);
 	
   };
 

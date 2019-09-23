@@ -7,13 +7,11 @@ const env = require('../../config/env');
 
 //signin function
 exports.signin = (req, res) => {   
-  console.log(req.body)
     Signin.findOne({
       where: {
         email: req.body.email
       }
     }).then(user => {
-      console.log(user.userID)
       if (!user) {
         return res.status(404).send('User Not Found.');
       }

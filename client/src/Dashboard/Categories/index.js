@@ -104,7 +104,7 @@ class Categories extends React.Component {
             <Select
             showSearch
             style={{ width: 150 }}
-            placeholder="Select a person"
+            placeholder="Select a Root Name"
             optionFilterProp="children"
             onChange={this.onChange}
             onFocus={this.onFocus}
@@ -124,7 +124,7 @@ class Categories extends React.Component {
           
             </Form.Item>
             <Form.Item label="Categorie Name">
-                 <Input label="Rootname" placeholder="Enter A Name" name="categoryName" value={categoryName} allowClear  onChange={(e) => this.inputChange(e)} />
+                 <Input label="Rootname" placeholder="Enter A Catgorey Name" name="categoryName" value={categoryName} allowClear  onChange={(e) => this.inputChange(e)} />
              </Form.Item>
             </Form>
 

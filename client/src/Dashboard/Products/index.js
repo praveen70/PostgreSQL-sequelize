@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Collapse , Select, Form , Input, Button   } from 'antd';
 import { getCategoriesActionStart  } from '../../action/getCategoriesAction';
+import { productStart } from '../../action/productAction'
 import Dashboard from '../Home'
 import './product.css';
 const { Panel } = Collapse;
@@ -15,13 +16,14 @@ function hasErrors(fieldsError) {
  
 class Product extends Component {
   state = {
-    value: ''
+    value: '',
+    categoryCategoryID: ''
   }
    handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values);
+            this.props.productStart(values)
           }
         });
       };
@@ -55,8 +57,8 @@ class Product extends Component {
        console.log('search:', val);
      }
      
-     handleChange = value => {
-      this.setState({ value });
+     handleChange = id => {
+      this.setState({ categoryCategoryID: id });
     };
 
   render() {
@@ -79,7 +81,7 @@ class Product extends Component {
                 <div>
 
                 <Form.Item  label="Select Categories" validateStatus={catgoriesError ? 'error' : ''} help={catgoriesError || ''}>
-                {getFieldDecorator("categories", {
+                {getFieldDecorator("categoryCategoryID", {
                   rules: [
                     {
                       required: true,
@@ -91,16 +93,15 @@ class Product extends Component {
                   className="select"
                     placeholder="Please Select catgories"
                     showSearch
-                  value={this.state.value}
+                  value={this.state.categoryID}
                   defaultActiveFirstOption={false}
                   showArrow={false}
-                  filterOption={false}
                   onSearch={this.handleSearch}
-                  onChange={this.handleChange}
+                  onChange={() => this.handleChange()}
                   notFoundContent={null}
                   >
                     {this.props.payload.map(d => (
-                      <Option key={d.categoryName}>{d.categoryName}</Option>
+                      <Option key={d.categoryID}>{d.categoryName}</Option>
                     ))}
                   </Select>
                 )}
@@ -198,6 +199,7 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = (dispatch) => {
     return {
       getCategoriesActionStart: () => {dispatch( getCategoriesActionStart())},
+      productStart : (data) => {dispatch(productStart(data))},
     }
   }
 

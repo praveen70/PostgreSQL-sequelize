@@ -4,13 +4,15 @@ import rootGroup from './rootReducers';
 import getRootGroup from './getRootReducer';
 import categories from './categoriesReducer';
 import getCategoriesData from './getCategoriesReducer';
+import product from './productReducer';
 
 const rootReducer = combineReducers({
     login,
     rootGroup,
     getRootGroup,
     categories,
-    getCategoriesData
+    getCategoriesData,
+    product
     
     
 });

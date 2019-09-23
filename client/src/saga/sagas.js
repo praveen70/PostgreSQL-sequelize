@@ -1,10 +1,11 @@
 import { call, put,  takeLatest } from 'redux-saga/effects';
-import api, { loginApi , postRootGroupData, getRootData , postCatrgoriesDataApi, getCategoriesData} from '../api/index';
+import api, { loginApi , postRootGroupData, getRootData , postCatrgoriesDataApi, getCategoriesData, postProductApi} from '../api/index';
 import {  LOGIN_START , LOGIN_START_SUCCESS, LOGIN_START_FAILURE } from '../action/actionType';
 import { POST_ROOT_GROUPNAME_START , POST_ROOT_GROUPNAME_SUCCESS, POST_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import {GET_ROOT_GROUPNAME_START , GET_ROOT_GROUPNAME_SUCCESS, GET_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import { POST_CATEGORIES_START , POST_CATEGORIES_SUCCESS, POST_CATEGORIES_FAILURE } from '../action/actionType';
 import { GET_CATEGORIES_START , GET_CATEGORIES_SUCCESS, GET_CATEGORIES_FAILURE } from '../action/actionType';
+import { POST_PRODUCT_START , POST_PRODUCT_SUCCESS, POST_PRODUCT_FAILURE  } from '../action/actionType';
 
 
 
@@ -104,6 +105,28 @@ export function* getCatrgoriesDataSagas(action) {
 		}
 	} catch (err) {
 		yield put({ type: GET_CATEGORIES_FAILURE, payload: err });
+	}
+}
+///ends here
+
+
+
+
+//Post products function starts form here
+
+export function* postProductSagasStart() {
+	yield takeLatest(POST_PRODUCT_START, postProductSagas);
+}
+
+
+export function* postProductSagas(action) {
+	try {
+		const responeProductDataResponse = yield call(postProductApi, action.payload);
+		if (responeProductDataResponse) {
+			yield put({ type: POST_PRODUCT_SUCCESS, payload: responeProductDataResponse });
+		}
+	} catch (err) {
+		yield put({ type: POST_PRODUCT_FAILURE, payload: err });
 	}
 }
 ///ends here
