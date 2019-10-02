@@ -1,11 +1,16 @@
 import { call, put,  takeLatest } from 'redux-saga/effects';
-import api, { loginApi , postRootGroupData, getRootData , postCatrgoriesDataApi, getCategoriesData, postProductApi} from '../api/index';
+import api, { loginApi , postRootGroupData, getRootData , 
+	postCatrgoriesDataApi, getCategoriesData, postProductApi, getProductData,
+	fileUploadApi
+} from '../api/index';
 import {  LOGIN_START , LOGIN_START_SUCCESS, LOGIN_START_FAILURE } from '../action/actionType';
 import { POST_ROOT_GROUPNAME_START , POST_ROOT_GROUPNAME_SUCCESS, POST_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import {GET_ROOT_GROUPNAME_START , GET_ROOT_GROUPNAME_SUCCESS, GET_ROOT_GROUPNAME_FAILURE } from '../action/actionType';
 import { POST_CATEGORIES_START , POST_CATEGORIES_SUCCESS, POST_CATEGORIES_FAILURE } from '../action/actionType';
 import { GET_CATEGORIES_START , GET_CATEGORIES_SUCCESS, GET_CATEGORIES_FAILURE } from '../action/actionType';
 import { POST_PRODUCT_START , POST_PRODUCT_SUCCESS, POST_PRODUCT_FAILURE  } from '../action/actionType';
+import { GET_PRODUCT_START , GET_PRODUCT_SUCCESS, GET_PRODUCT_FAILURE  } from '../action/actionType';
+import { UPLOAD_PRODUCT_FILE , UPLOAD_PRODUCT_FILE_SUCCESS, UPLOAD_PRODUCT_FILE_FAILURE  } from '../action/actionType';
 
 
 
@@ -60,6 +65,7 @@ export function* getRootGroupData() {
 export function* getGroupRootData(action) {
 	try {
 		const responeRootGroupData = yield call(getRootData, action.payload);
+		console.log("sagas file", responeRootGroupData)
 		if (responeRootGroupData) {
 			yield put({ type: GET_ROOT_GROUPNAME_SUCCESS, payload: responeRootGroupData });
 		}
@@ -110,8 +116,6 @@ export function* getCatrgoriesDataSagas(action) {
 ///ends here
 
 
-
-
 //Post products function starts form here
 
 export function* postProductSagasStart() {
@@ -127,6 +131,44 @@ export function* postProductSagas(action) {
 		}
 	} catch (err) {
 		yield put({ type: POST_PRODUCT_FAILURE, payload: err });
+	}
+}
+///ends here
+
+//Get products function starts form here
+
+export function* getProductSagasStart() {
+	yield takeLatest(GET_PRODUCT_START, gettProductSagas);
+}
+
+
+export function* gettProductSagas(action) {
+	try {
+		const getProductDataResponse = yield call(getProductData, action.payload);
+		if (getProductDataResponse) {
+			yield put({ type: GET_PRODUCT_SUCCESS, payload: getProductDataResponse });
+		}
+	} catch (err) {
+		yield put({ type: GET_PRODUCT_FAILURE, payload: err });
+	}
+}
+///ends here
+
+//upload products file function starts form here
+
+export function* uploadFileStart() {
+	yield takeLatest(UPLOAD_PRODUCT_FILE, uploadFileSagas);
+}
+
+
+export function* uploadFileSagas(action) {
+	try {
+		const uploadFileResponse = yield call(fileUploadApi, action.payload);
+		if (uploadFileResponse) {
+			yield put({ type: UPLOAD_PRODUCT_FILE_SUCCESS, payload: uploadFileResponse });
+		}
+	} catch (err) {
+		yield put({ type: UPLOAD_PRODUCT_FILE_FAILURE, payload: err });
 	}
 }
 ///ends here

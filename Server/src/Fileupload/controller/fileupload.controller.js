@@ -2,6 +2,7 @@ const db = require('../../config/db.config.js');
 const File = db.file;
 
 exports.uploadFile = (req, res, error) => {
+	console.log("i am body", req.file);
 	if (req.file === undefined) {
 		res.send({ error: 'Error: No File Selected!' });
 		return false;
@@ -55,7 +56,7 @@ exports.findById = (req, res) => {
 // Update by id
 exports.update = (req, res) => {
 	const id = req.params.id;
-	console.log(req.body);
+	console.log("i am body",req.body);
 	console.log('req.params', req.params);
 	File.update(
 		{
@@ -64,7 +65,7 @@ exports.update = (req, res) => {
 			type: req.file.mimetype,
 			docPath: req.file.destination,
 			size: req.file.size,
-			path: req.file.path
+			path: req.file.path,
 		},
 		{ where: { id: req.params.id } }
 	)
