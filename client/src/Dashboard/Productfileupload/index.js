@@ -45,14 +45,9 @@ class Productfileupload extends Component {
 				let { productProductID } = values;
 				formData.append('upload', this.state.fileList[0].originFileObj);
 				formData.append('productProductID', productProductID);
-				axios
-					.post('http://localhost:8082/api/uploadfile', formData)
-					.then((res) => {
-						console.log('res', res);
-					})
-					.catch((err) => {
-						console.log('err', err);
-					});
+				this.props.uploadFileStart(formData);
+				message.success(`file uploaded successfully`);
+				
 			}
 		});
 	};
@@ -161,9 +156,11 @@ class Productfileupload extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log('componentpage', state);
+	console.log('componentpage', state.productUploadFile.message);
+	console.log(state.msg)
 	return {
-		payload: state.getProductData.payload
+		payload: state.getProductData.payload,
+		message: state.productUploadFile.message
 	};
 };
 

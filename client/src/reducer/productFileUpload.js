@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export default function productUploadFile(state = initialState, action = {}) {
-	// console.log("reducer", action.payload.msg)
+	console.log("reducer", action.payload)
 	switch (action.type) {
 		case UPLOAD_PRODUCT_FILE:
 			return {
@@ -20,7 +20,7 @@ export default function productUploadFile(state = initialState, action = {}) {
 				...state,
 				payload: action.payload,
 				loading: false,
-				message: action.payload.msg,
+				message: action.payload,
 				error: null
 			};
 

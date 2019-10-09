@@ -4,7 +4,7 @@ export function uploadFileStart(payload){
     return {
         type: UPLOAD_PRODUCT_FILE,
         loading: true,
-        payload:payload.dragger[0].originFileObj,
+        payload:payload,
     };
 }
 
