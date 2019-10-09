@@ -27,7 +27,7 @@ exports.signin = (req, res) => {
         expiresIn: 1440 // expires in 24 hours
       });
       
-      res.status(200).send({ auth: true, accessToken: token , userID: user.userID });
+      res.status(200).send({ auth: true, accessToken: token , userID: user.userID, message:"succesfuly logged in " });
       
     }).catch(err => {
       res.status(500).send('Error -> ' + err);

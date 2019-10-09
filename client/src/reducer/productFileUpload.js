@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export default function productUploadFile(state = initialState, action = {}) {
-    console.log("reducer file", action.payload)
 	switch (action.type) {
 		case UPLOAD_PRODUCT_FILE:
 			return {

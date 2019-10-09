@@ -2,7 +2,6 @@ const db = require('../../config/db.config.js');
 const File = db.file;
 
 exports.uploadFile = (req, res, error) => {
-	console.log("i am body", req.file);
 	if (req.file === undefined) {
 		res.send({ error: 'Error: No File Selected!' });
 		return false;
@@ -20,18 +19,17 @@ exports.uploadFile = (req, res, error) => {
 			productProductID: req.body.productProductID
 		})
 			.then(() => {
-				res.json({ msg: 'File uploaded successfully! -> filename = ' + req.file.originalname });
+				res.status(200).send({ msg: 'File uploaded successfully! -> filename = ' + req.file.originalname });
 			})
 			.catch((err) => {
 				console.log(err);
-				res.json({ msg: 'Error', detail: err });
+				res.status(400).send({ msg: 'Error', detail: err });
 			});
 	}
 };
 
 //  FETCH all
 exports.findAll = (req, res) => {
-	console.log('data');
 	File.findAll()
 		.then((files) => {
 			// Send all customers to Client

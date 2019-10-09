@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Collapse, Form, Select, Button, Upload, Icon, message } from 'antd';
+import { Collapse, Form, Select, Button, Upload, Icon, message, Modal } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProductActionStart } from '../../action/getProductAction';
 import { uploadFileStart } from '../../action/productFileUploadAction';
+import axios from 'axios';
 import './productfileupload.css';
 
 const { Panel } = Collapse;
@@ -15,55 +16,43 @@ function hasErrors(fieldsError) {
 }
 class Productfileupload extends Component {
 	state = {
-        id: '',
+		id: '',
 		selectedfile: '',
-		values:[]
-    };
-    
-	callback(key) {
-		// console.log(key);
-	}
+		values: [],
+		previewVisible: false,
+		previewImage: '',
+		fileList: []
+	};
 
 	componentDidMount() {
 		this.props.getProductActionStart();
-    }
-    
-    // onChange = (e) => {
-    //     const files = Array.from(e.files);
-    //     console.log(e.file)
-    //     const formData = new FormData()
-    
-    //     files.forEach((file, i) => {
-    //       formData.append(i, file)
-    //     })
-    
-        
-    //   }
+	}
+	handleCancel = () => this.setState({ previewVisible: false });
+
+	handlePreview = (file) => {
+		this.setState({
+			previewImage: file.thumbUrl,
+			previewVisible: true
+		});
+	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
-			this.normFile()
+			this.normFile();
 			if (!err) {
-				this.props.uploadFileStart(values)
-                // const formData = new FormData()
-                // formData.append("image" ,values.dragger[0]);
-                // values.dragger.map((item, i) => {
-                //     let  data = {
-                //         type:item.originFileObj.type,
-                //         fileName:item.originFileObj.name,
-                //         productProductID:values.productProductID,
-                //         size:item.originFileObj.size
-                //         // docPath: ,
-                //         // path:,
-                //     }
-                //     console.log("formData", data)
-                //    let x= formData.append("image" ,data);
-                //    console.log("formData", x)
-                // });
-               
-               
-               
+				let formData = new FormData();
+				let { productProductID } = values;
+				formData.append('upload', this.state.fileList[0].originFileObj);
+				formData.append('productProductID', productProductID);
+				axios
+					.post('http://localhost:8082/api/uploadfile', formData)
+					.then((res) => {
+						console.log('res', res);
+					})
+					.catch((err) => {
+						console.log('err', err);
+					});
 			}
 		});
 	};
@@ -71,16 +60,27 @@ class Productfileupload extends Component {
 		this.setState({ productProductID: id });
 	};
 
+	handleUpload = ({ fileList }) => {
+		this.setState({ fileList });
+	};
+
 	normFile = (e) => {
 		if (Array.isArray(e)) {
-          console.log(e.file)
-            this.setState({ selectedfile : e.file})
+			this.setState({ selectedfile: e.file });
 			return e;
 		}
 		return e && e.fileList;
 	};
 
 	render() {
+		const { previewVisible, previewImage, fileList } = this.state;
+		const uploadButton = (
+			<div>
+				<Icon type="plus" />
+				<div className="ant-upload-text">Upload</div>
+			</div>
+		);
+
 		let data = this.props.payload;
 		const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
 		const catgoriesError = isFieldTouched('productProductID') && getFieldError('productProductID');
@@ -88,7 +88,12 @@ class Productfileupload extends Component {
 			<div>
 				<Collapse onChange={this.callback}>
 					<Panel header="Add Product File" key="1">
-						<Form onSubmit={this.handleSubmit} className="d-flex ">
+						<Form
+							onSubmit={this.handleSubmit}
+							className="d-flex "
+							method="post"
+							enctype="multipart/form-data"
+						>
 							<Form.Item
 								label="Select Product"
 								validateStatus={catgoriesError ? 'error' : ''}
@@ -106,14 +111,13 @@ class Productfileupload extends Component {
 										className="select"
 										placeholder="Please Select Product"
 										showSearch
-										// value={this.state.categoryID}
 										defaultActiveFirstOption={false}
 										showArrow={false}
 										onSearch={this.handleSearch}
 										onChange={() => this.handleChange()}
 										notFoundContent={null}
 									>
-										{data.map((item) =>  (
+										{data.map((item) => (
 											<Option key={item.productID}>{item.productFullName}</Option>
 										))}
 									</Select>
@@ -124,19 +128,29 @@ class Productfileupload extends Component {
 									valuePropName: 'fileList',
 									getValueFromEvent: this.normFile
 								})(
-									<Upload.Dragger name="files" beforeUpload={this.normFile} action="http://localhost:8082/api/uploadfile">
-										<p className="ant-upload-drag-icon">
-											<Icon type="inbox" />
-										</p>
-										<p className="ant-upload-text">Click or drag file to this area to upload</p>
-									</Upload.Dragger>
-									
-									
+									<Upload
+										listType="picture-card"
+										fileList={fileList}
+										onPreview={this.handlePreview}
+										onChange={this.handleUpload}
+										beforeUpload={() => false} // return false so that antd doesn't upload the picture right away
+									>
+										{uploadButton}
+									</Upload>
 								)}
 							</Form.Item>
-							
+							<Form.Item>
+								<Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+									<img alt="example" style={{ width: '100%' }} src={previewImage} />
+								</Modal>
+							</Form.Item>
 						</Form>
-						<Button type="primary" htmlType="submit" disabled={hasErrors(getFieldsError())} onClick={(e) => this.handleSubmit(e)}>
+						<Button
+							type="primary"
+							htmlType="submit"
+							disabled={hasErrors(getFieldsError())}
+							onClick={(e) => this.handleSubmit(e)}
+						>
 							Submit
 						</Button>
 					</Panel>
@@ -147,7 +161,7 @@ class Productfileupload extends Component {
 }
 
 const mapStateToProps = (state) => {
-	console.log("componentpage", state)
+	console.log('componentpage', state);
 	return {
 		payload: state.getProductData.payload
 	};
@@ -156,10 +170,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getProductActionStart: () => {
-			dispatch(getProductActionStart())
+			dispatch(getProductActionStart());
 		},
-		uploadFileStart : (values) => {
-			dispatch(uploadFileStart(values))
+		uploadFileStart: (values) => {
+			dispatch(uploadFileStart(values));
 		}
 	};
 };
@@ -167,4 +181,3 @@ const mapDispatchToProps = (dispatch) => {
 const Fileupload = withRouter(connect(mapStateToProps, mapDispatchToProps)(Productfileupload));
 
 export default Form.create()(Fileupload);
-  
