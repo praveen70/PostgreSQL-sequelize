@@ -35,20 +35,9 @@ export function getProductData() {
 }
 
 export function fileUploadApi(data) {
+	return axios
+			.post('http://localhost:8082/api/uploadfile', data, )
+			.then((res) =>  res.data);
 
-	let { dragger, productProductID } = data;
-
-	dragger.map((ele) => {
-		let fileData = {
-			productProductID: productProductID,
-			upload: ele.name
-		};
 	
-		console.log(dragger[0])
-		return axios
-			.post('http://localhost:8082/api/uploadfile', dragger[0], {
-				headers: fileData
-			})
-			.then((res) => console.log(res.data) && res.data);
-	});
 }

@@ -3,10 +3,12 @@ import {  UPLOAD_PRODUCT_FILE , UPLOAD_PRODUCT_FILE_SUCCESS, UPLOAD_PRODUCT_FILE
 const initialState = {
 	payload: null,
 	error: null,
-	loading: false
+	loading: false,
+	message:''
 };
 
 export default function productUploadFile(state = initialState, action = {}) {
+	// console.log("reducer", action.payload.msg)
 	switch (action.type) {
 		case UPLOAD_PRODUCT_FILE:
 			return {
@@ -18,6 +20,7 @@ export default function productUploadFile(state = initialState, action = {}) {
 				...state,
 				payload: action.payload,
 				loading: false,
+				message: action.payload.msg,
 				error: null
 			};
 
@@ -25,7 +28,8 @@ export default function productUploadFile(state = initialState, action = {}) {
 			return {
 				...state,
 				loading: false,
-				error: action.payload
+				error: action.payload,
+				message:null
 			};
 
 		default:
